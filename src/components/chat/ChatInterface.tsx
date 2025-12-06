@@ -93,22 +93,19 @@ export default function ChatInterface() {
                     <span className="text-lg font-bold text-traditional-text">100년 한의학 AI 헬스케어</span>
                 </div>
                 <div className="hidden md:flex items-center gap-6 text-sm font-medium text-traditional-subtext">
-                    <Link href="#" className="hover:text-traditional-primary">AI 헬스케어</Link>
-                    <Link href="#" className="hover:text-traditional-primary">이용후기</Link>
-                    <Link href="#" className="hover:text-traditional-primary">문의하기</Link>
-                    <Link href="#" className="px-4 py-2 bg-traditional-accent text-white rounded-full hover:bg-opacity-90 transition-colors">
-                        상담예약
+                    <Link href="/login" className="px-5 py-2 bg-traditional-accent text-white rounded-full hover:bg-opacity-90 transition-colors shadow-md">
+                        로그인
                     </Link>
                 </div>
             </header>
 
             <main className="flex-1 max-w-3xl mx-auto w-full px-4 pb-20">
                 {/* Hero Banner */}
-                <div className="relative rounded-3xl overflow-hidden mb-8 h-48 md:h-64">
+                <div className="relative rounded-3xl overflow-hidden mb-8 h-48 md:h-64 shadow-lg">
                     <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1544367563-12123d8965cd?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center"></div>
-                    <div className="absolute inset-0 bg-black/30"></div>
+                    <div className="absolute inset-0 bg-black/40"></div>
                     <div className="relative z-10 h-full flex flex-col justify-end p-8">
-                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
+                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 drop-shadow-md">
                             AI 헬스케어로 알아보는 나의 건강
                         </h2>
                     </div>
@@ -121,8 +118,8 @@ export default function ChatInterface() {
                             key={mod.id}
                             href={`/healthcare/chat?topic=${mod.id}`}
                             className={`flex-shrink-0 w-64 p-5 rounded-xl border transition-all ${topic === mod.id
-                                    ? "bg-white border-traditional-accent shadow-md ring-1 ring-traditional-accent"
-                                    : "bg-white border-traditional-muted hover:border-traditional-subtext/50"
+                                ? "bg-white border-traditional-accent shadow-md ring-1 ring-traditional-accent"
+                                : "bg-white border-traditional-muted hover:border-traditional-subtext/50"
                                 }`}
                         >
                             <div className="flex items-start justify-between mb-2">
@@ -135,7 +132,7 @@ export default function ChatInterface() {
                 </div>
 
                 {/* Chat Area */}
-                <div className="bg-traditional-bg/50 rounded-3xl p-4 min-h-[400px] space-y-6">
+                <div className="bg-indigo-50/50 border border-indigo-100 rounded-3xl p-6 min-h-[400px] space-y-6 shadow-inner">
                     {messages.map((msg, idx) => (
                         <div
                             key={idx}
@@ -144,18 +141,18 @@ export default function ChatInterface() {
                             {/* Avatar */}
                             <div
                                 className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm ${msg.role === "ai"
-                                    ? "bg-traditional-accent text-white"
-                                    : "bg-white border border-traditional-muted"
+                                    ? "bg-white text-traditional-accent border border-indigo-100"
+                                    : "bg-teal-100 text-teal-600"
                                     }`}
                             >
-                                {msg.role === "ai" ? <div className="text-xs font-bold">AI</div> : <User size={20} className="text-traditional-subtext" />}
+                                {msg.role === "ai" ? <div className="text-xs font-bold">AI</div> : <User size={20} />}
                             </div>
 
                             {/* Bubble */}
                             <div
                                 className={`max-w-[80%] px-5 py-3 rounded-2xl text-sm leading-relaxed shadow-sm ${msg.role === "ai"
-                                    ? "bg-white text-traditional-text border border-traditional-muted rounded-tl-none"
-                                    : "bg-traditional-accent text-white rounded-tr-none"
+                                    ? "bg-white text-traditional-text border border-indigo-100 rounded-tl-none"
+                                    : "bg-[#E0F2F1] text-teal-900 rounded-tr-none border border-teal-100"
                                     }`}
                             >
                                 {msg.content}
@@ -164,10 +161,10 @@ export default function ChatInterface() {
                     ))}
                     {isLoading && (
                         <div className="flex items-start gap-3">
-                            <div className="w-10 h-10 rounded-full bg-traditional-accent text-white flex items-center justify-center">
+                            <div className="w-10 h-10 rounded-full bg-white text-traditional-accent border border-indigo-100 flex items-center justify-center shadow-sm">
                                 <div className="text-xs font-bold">AI</div>
                             </div>
-                            <div className="bg-white px-5 py-3 rounded-2xl rounded-tl-none border border-traditional-muted shadow-sm">
+                            <div className="bg-white px-5 py-3 rounded-2xl rounded-tl-none border border-indigo-100 shadow-sm">
                                 <div className="flex gap-1">
                                     <span className="w-1.5 h-1.5 bg-traditional-subtext/40 rounded-full animate-bounce"></span>
                                     <span className="w-1.5 h-1.5 bg-traditional-subtext/40 rounded-full animate-bounce delay-100"></span>

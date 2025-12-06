@@ -39,7 +39,7 @@ export default function LandingPage() {
           </video>
         </div>
         {/* Dark Overlay for Text Visibility */}
-        <div className="absolute inset-0 bg-black/40 z-0"></div>
+        <div className="absolute inset-0 bg-black/60 z-0"></div>
         <div className="absolute inset-0 opacity-10 bg-[url('/texture-hanji.png')] pointer-events-none mix-blend-multiply"></div>
 
         <div className="relative z-10 max-w-4xl mx-auto space-y-8 animate-fade-in">
@@ -105,121 +105,84 @@ export default function LandingPage() {
       </section>
 
       {/* Modules Grid */}
-      <section className="px-6 pb-24 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* Module 1: Resilience */}
-          <Link href="/healthcare/chat?topic=resilience" className="group">
-            <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-traditional-muted hover:shadow-lg transition-all duration-300 h-full flex flex-col">
-              <div className="h-48 bg-gray-100 relative overflow-hidden">
-                {/* Placeholder for Yoga Image */}
-                <div className="absolute inset-0 bg-gray-200 flex items-center justify-center text-gray-400">
-                  <Sun size={48} />
-                </div>
-                <div className="absolute inset-0 bg-[url('/images/module-resilience.jpg')] bg-cover bg-center opacity-80 group-hover:scale-105 transition-transform duration-500" />
-              </div>
-              <div className="p-6 flex-1 flex flex-col">
-                <h3 className="text-xl font-bold text-traditional-text mb-2">회복력·면역</h3>
-                <p className="text-traditional-subtext text-sm mb-4 flex-1">
-                  피로와 스트레스 관리, 면역력 증진을 위한 생활 습관을 점검합니다.
-                </p>
-                <div className="flex gap-2 mb-6">
-                  <span className="text-xs px-2 py-1 bg-traditional-bg text-traditional-subtext rounded">#만성피로</span>
-                  <span className="text-xs px-2 py-1 bg-traditional-bg text-traditional-subtext rounded">#면역력</span>
-                </div>
-                <div className="w-full py-3 bg-traditional-muted/30 text-traditional-text text-sm font-medium rounded-lg text-center group-hover:bg-traditional-accent group-hover:text-white transition-colors">
-                  대화로 체크 시작
-                </div>
-              </div>
-            </div>
-          </Link>
+      <section className="relative py-24 overflow-hidden">
+        {/* Background Image & Overlay */}
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-[url('/images/ai-healthcare-bg.jpg')] bg-cover bg-center"></div>
+          <div className="absolute inset-0 bg-black/60"></div>
+        </div>
 
-          {/* Module 2: Women */}
-          <Link href="/healthcare/chat?topic=women" className="group">
-            <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-traditional-muted hover:shadow-lg transition-all duration-300 h-full flex flex-col">
-              <div className="h-48 bg-gray-100 relative overflow-hidden">
-                <div className="absolute inset-0 bg-[url('/images/module-women.jpg')] bg-cover bg-center opacity-80 group-hover:scale-105 transition-transform duration-500" />
-              </div>
-              <div className="p-6 flex-1 flex flex-col">
-                <h3 className="text-xl font-bold text-traditional-text mb-2">여성 밸런스</h3>
-                <p className="text-traditional-subtext text-sm mb-4 flex-1">
-                  월경 주기, 호르몬 변화 등 여성 건강의 균형을 위한 생활 리듬을 살핍니다.
-                </p>
-                <div className="flex gap-2 mb-6">
-                  <span className="text-xs px-2 py-1 bg-traditional-bg text-traditional-subtext rounded">#생리통</span>
-                  <span className="text-xs px-2 py-1 bg-traditional-bg text-traditional-subtext rounded">#갱년기</span>
-                </div>
-                <div className="w-full py-3 bg-traditional-muted/30 text-traditional-text text-sm font-medium rounded-lg text-center group-hover:bg-traditional-secondary group-hover:text-white transition-colors">
-                  대화로 체크 시작
-                </div>
-              </div>
-            </div>
-          </Link>
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-12 drop-shadow-md">
+            AI 헬스케어로 알아보는 나의 건강
+          </h2>
 
-          {/* Module 3: Pain */}
-          <Link href="/healthcare/chat?topic=pain" className="group">
-            <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-traditional-muted hover:shadow-lg transition-all duration-300 h-full flex flex-col">
-              <div className="h-48 bg-gray-100 relative overflow-hidden">
-                <div className="absolute inset-0 bg-[url('/images/module-pain.png')] bg-cover bg-center opacity-80 group-hover:scale-105 transition-transform duration-500" />
-              </div>
-              <div className="p-6 flex-1 flex flex-col">
-                <h3 className="text-xl font-bold text-traditional-text mb-2">통증 패턴</h3>
-                <p className="text-traditional-subtext text-sm mb-4 flex-1">
-                  일상 속 불편한 통증의 원인이 될 수 있는 생활 패턴을 분석합니다.
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            {/* Module 1: Resilience */}
+            <Link href="/healthcare/chat?topic=resilience" className="group">
+              <div className="bg-white/90 backdrop-blur-sm rounded-xl p-6 h-full border border-white/20 hover:bg-white transition-all duration-300 hover:scale-105 hover:shadow-xl flex flex-col items-center text-center">
+                <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-orange-500 transition-colors">
+                  <Sun className="w-6 h-6 text-orange-600 group-hover:text-white transition-colors" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-800 mb-2">회복력·면역</h3>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  만성 피로와 잦은 감기
                 </p>
-                <div className="flex gap-2 mb-6">
-                  <span className="text-xs px-2 py-1 bg-traditional-bg text-traditional-subtext rounded">#두통</span>
-                  <span className="text-xs px-2 py-1 bg-traditional-bg text-traditional-subtext rounded">#허리통증</span>
-                </div>
-                <div className="w-full py-3 bg-traditional-muted/30 text-traditional-text text-sm font-medium rounded-lg text-center group-hover:bg-traditional-accent group-hover:text-white transition-colors">
-                  대화로 체크 시작
-                </div>
               </div>
-            </div>
-          </Link>
+            </Link>
 
-          {/* Module 4: Digestion */}
-          <Link href="/healthcare/chat?topic=digestion" className="group">
-            <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-traditional-muted hover:shadow-lg transition-all duration-300 h-full flex flex-col">
-              <div className="h-48 bg-gray-100 relative overflow-hidden">
-                <div className="absolute inset-0 bg-[url('/images/module-digestion.jpg')] bg-cover bg-center opacity-80 group-hover:scale-105 transition-transform duration-500" />
-              </div>
-              <div className="p-6 flex-1 flex flex-col">
-                <h3 className="text-xl font-bold text-traditional-text mb-2">소화·수면 리듬</h3>
-                <p className="text-traditional-subtext text-sm mb-4 flex-1">
-                  규칙적인 소화와 깊은 수면을 위한 식습관과 생활 습관을 체크합니다.
+            {/* Module 2: Women */}
+            <Link href="/healthcare/chat?topic=women" className="group">
+              <div className="bg-white/90 backdrop-blur-sm rounded-xl p-6 h-full border border-white/20 hover:bg-white transition-all duration-300 hover:scale-105 hover:shadow-xl flex flex-col items-center text-center">
+                <div className="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-pink-500 transition-colors">
+                  <Moon className="w-6 h-6 text-pink-600 group-hover:text-white transition-colors" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-800 mb-2">여성 밸런스</h3>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  생리 주기부터 갱년기까지
                 </p>
-                <div className="flex gap-2 mb-6">
-                  <span className="text-xs px-2 py-1 bg-traditional-bg text-traditional-subtext rounded">#소화불량</span>
-                  <span className="text-xs px-2 py-1 bg-traditional-bg text-traditional-subtext rounded">#불면증</span>
-                </div>
-                <div className="w-full py-3 bg-traditional-muted/30 text-traditional-text text-sm font-medium rounded-lg text-center group-hover:bg-orange-600 group-hover:text-white transition-colors">
-                  대화로 체크 시작
-                </div>
               </div>
-            </div>
-          </Link>
+            </Link>
 
-          {/* Module 5: Pregnancy */}
-          <Link href="/healthcare/chat?topic=pregnancy" className="group">
-            <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-traditional-muted hover:shadow-lg transition-all duration-300 h-full flex flex-col">
-              <div className="h-48 bg-gray-100 relative overflow-hidden">
-                <div className="absolute inset-0 bg-[url('/images/module-pregnancy.jpg')] bg-cover bg-center opacity-80 group-hover:scale-105 transition-transform duration-500" />
-              </div>
-              <div className="p-6 flex-1 flex flex-col">
-                <h3 className="text-xl font-bold text-traditional-text mb-2">임신 준비 생활 체크</h3>
-                <p className="text-traditional-subtext text-sm mb-4 flex-1">
-                  건강한 임신을 준비하기 위한 생활 수칙과 영양 상태를 점검합니다.
+            {/* Module 3: Pain */}
+            <Link href="/healthcare/chat?topic=pain" className="group">
+              <div className="bg-white/90 backdrop-blur-sm rounded-xl p-6 h-full border border-white/20 hover:bg-white transition-all duration-300 hover:scale-105 hover:shadow-xl flex flex-col items-center text-center">
+                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-blue-500 transition-colors">
+                  <Activity className="w-6 h-6 text-blue-600 group-hover:text-white transition-colors" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-800 mb-2">통증 패턴</h3>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  반복되는 두통, 어깨 결림
                 </p>
-                <div className="flex gap-2 mb-6">
-                  <span className="text-xs px-2 py-1 bg-traditional-bg text-traditional-subtext rounded">#임신준비</span>
-                  <span className="text-xs px-2 py-1 bg-traditional-bg text-traditional-subtext rounded">#영양</span>
-                </div>
-                <div className="w-full py-3 bg-traditional-muted/30 text-traditional-text text-sm font-medium rounded-lg text-center group-hover:bg-pink-600 group-hover:text-white transition-colors">
-                  대화로 체크 시작
-                </div>
               </div>
-            </div>
-          </Link>
+            </Link>
+
+            {/* Module 4: Digestion */}
+            <Link href="/healthcare/chat?topic=digestion" className="group">
+              <div className="bg-white/90 backdrop-blur-sm rounded-xl p-6 h-full border border-white/20 hover:bg-white transition-all duration-300 hover:scale-105 hover:shadow-xl flex flex-col items-center text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-green-500 transition-colors">
+                  <Heart className="w-6 h-6 text-green-600 group-hover:text-white transition-colors" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-800 mb-2">소화·수면</h3>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  더부룩한 속과 깊은 잠
+                </p>
+              </div>
+            </Link>
+
+            {/* Module 5: Pregnancy */}
+            <Link href="/healthcare/chat?topic=pregnancy" className="group">
+              <div className="bg-white/90 backdrop-blur-sm rounded-xl p-6 h-full border border-white/20 hover:bg-white transition-all duration-300 hover:scale-105 hover:shadow-xl flex flex-col items-center text-center">
+                <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-purple-500 transition-colors">
+                  <Baby className="w-6 h-6 text-purple-600 group-hover:text-white transition-colors" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-800 mb-2">임신 준비</h3>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  예비 부모를 위한 필수 체크
+                </p>
+              </div>
+            </Link>
+          </div>
         </div>
       </section>
 
