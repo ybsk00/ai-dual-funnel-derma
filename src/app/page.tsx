@@ -36,19 +36,20 @@ export default function LandingPage() {
             className="w-full h-full object-cover opacity-50"
           >
             <source src="/grok-video-d2ce9230-c0a9-4bed-9097-3443b0c49cfd.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
           </video>
         </div>
+        {/* Dark Overlay for Text Visibility */}
+        <div className="absolute inset-0 bg-black/40 z-0"></div>
         <div className="absolute inset-0 opacity-10 bg-[url('/texture-hanji.png')] pointer-events-none mix-blend-multiply"></div>
 
         <div className="relative z-10 max-w-4xl mx-auto space-y-8 animate-fade-in">
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-white drop-shadow-md leading-tight">
-            <span className="block text-2xl md:text-3xl mb-4 font-normal opacity-90">
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-white drop-shadow-xl leading-tight">
+            <span className="block text-2xl md:text-3xl mb-4 font-normal opacity-90 drop-shadow-md">
               100년의 지혜와 AI가 만나
             </span>
             당신의 건강한 리듬을 찾습니다
           </h1>
-          <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed drop-shadow-sm">
+          <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed drop-shadow-lg">
             AI로 찾는 나의 건강 리듬. 전통 한의학의 깊이와 현대 기술로 개인 맞춤형 건강 솔루션을 경험해보세요.
           </p>
           <div className="pt-4">
