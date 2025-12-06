@@ -108,7 +108,7 @@ export default function LandingPage() {
       <section className="relative py-24 overflow-hidden">
         {/* Background Image & Overlay */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-[url('/images/ai-healthcare-bg.jpg')] bg-cover bg-center"></div>
+          <div className="absolute inset-0 bg-[url('/images/herbal-bg.png')] bg-cover bg-center"></div>
           <div className="absolute inset-0 bg-black/60"></div>
         </div>
 

@@ -86,12 +86,12 @@ export default function ChatInterface() {
         <div className="min-h-screen bg-traditional-bg font-sans flex flex-col">
             {/* Header */}
             <header className="bg-traditional-bg px-6 py-4 flex items-center justify-between sticky top-0 z-20">
-                <div className="flex items-center gap-2">
+                <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
                     <div className="w-6 h-6 bg-traditional-accent rounded-sm flex items-center justify-center">
                         <span className="text-white text-xs font-bold">L</span>
                     </div>
                     <span className="text-lg font-bold text-traditional-text">100년 한의학 AI 헬스케어</span>
-                </div>
+                </Link>
                 <div className="hidden md:flex items-center gap-6 text-sm font-medium text-traditional-subtext">
                     <Link href="/login" className="px-5 py-2 bg-traditional-accent text-white rounded-full hover:bg-opacity-90 transition-colors shadow-md">
                         로그인
@@ -99,34 +99,37 @@ export default function ChatInterface() {
                 </div>
             </header>
 
-            <main className="flex-1 max-w-3xl mx-auto w-full px-4 pb-20">
+            <main className="flex-1 max-w-4xl mx-auto w-full px-4 pb-20">
                 {/* Hero Banner */}
-                <div className="relative rounded-3xl overflow-hidden mb-8 h-48 md:h-64 shadow-lg">
-                    <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1544367563-12123d8965cd?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center"></div>
-                    <div className="absolute inset-0 bg-black/40"></div>
-                    <div className="relative z-10 h-full flex flex-col justify-end p-8">
-                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 drop-shadow-md">
+                <div className="relative rounded-3xl overflow-hidden mb-6 h-40 md:h-52 shadow-lg">
+                    <div className="absolute inset-0 bg-[url('/images/herbal-bg.png')] bg-cover bg-center"></div>
+                    <div className="absolute inset-0 bg-black/50"></div>
+                    <div className="relative z-10 h-full flex flex-col justify-end p-6">
+                        <h2 className="text-2xl md:text-3xl font-bold text-white mb-1 drop-shadow-md">
                             AI 헬스케어로 알아보는 나의 건강
                         </h2>
+                        <p className="text-white/80 text-sm md:text-base">
+                            전통의 지혜와 현대 기술의 만남
+                        </p>
                     </div>
                 </div>
 
                 {/* Module List */}
-                <div className="flex gap-4 overflow-x-auto pb-6 no-scrollbar mb-4">
+                <div className="grid grid-cols-5 gap-2 mb-6">
                     {modules.map((mod) => (
                         <Link
                             key={mod.id}
                             href={`/healthcare/chat?topic=${mod.id}`}
-                            className={`flex-shrink-0 w-64 p-5 rounded-xl border transition-all ${topic === mod.id
+                            className={`flex flex-col items-center justify-center p-2 rounded-xl border transition-all h-full text-center ${topic === mod.id
                                 ? "bg-white border-traditional-accent shadow-md ring-1 ring-traditional-accent"
-                                : "bg-white border-traditional-muted hover:border-traditional-subtext/50"
+                                : "bg-white border-traditional-muted hover:border-traditional-subtext/50 hover:shadow-sm"
                                 }`}
                         >
-                            <div className="flex items-start justify-between mb-2">
-                                <h3 className="font-bold text-traditional-text">{mod.label}</h3>
-                                <mod.icon size={16} className="text-traditional-subtext" />
+                            <div className="w-8 h-8 rounded-full bg-traditional-bg flex items-center justify-center mb-2">
+                                <mod.icon size={14} className="text-traditional-subtext" />
                             </div>
-                            <p className="text-xs text-traditional-subtext">{mod.desc}</p>
+                            <h3 className="font-bold text-traditional-text text-[11px] leading-tight mb-1">{mod.label}</h3>
+                            <p className="text-[9px] text-traditional-subtext leading-tight line-clamp-2">{mod.desc}</p>
                         </Link>
                     ))}
                 </div>
