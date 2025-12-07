@@ -25,7 +25,7 @@ export default function MedicalChatInterface() {
         const source = params.get("source");
         const context = params.get("context");
 
-        let initialContent = "안녕하세요. 죽전한의원 메디컬 AI입니다. \n더 정확한 진료를 위해 현재 불편하신 증상을 구체적으로 말씀해 주세요. (예: 통증 부위, 시작된 시기, 악화 요인 등)";
+        let initialContent = "안녕하세요. AI 스마일 덴탈케어 상담실입니다. \n더 정확한 진료를 위해 현재 불편하신 치아/구강 증상을 구체적으로 말씀해 주세요. (예: 통증 부위, 시작된 시기, 악화 요인 등)";
 
         if (source) {
             switch (source) {
@@ -142,10 +142,10 @@ export default function MedicalChatInterface() {
                         <ArrowLeft size={24} />
                     </Link>
                     <div className="ml-2">
-                        <h1 className="text-lg font-bold text-slate-800">예진 상담 (Medical Chat)</h1>
+                        <h1 className="text-lg font-bold text-slate-800">치과 AI 상담 (Dental Chat)</h1>
                         <p className="text-xs text-blue-600 flex items-center font-medium">
                             <span className="w-2 h-2 rounded-full bg-blue-600 mr-1"></span>
-                            전문의 감독 하에 운영
+                            치과 전문의 감독 하에 운영
                         </p>
                     </div>
                 </div>

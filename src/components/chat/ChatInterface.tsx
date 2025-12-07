@@ -79,7 +79,7 @@ export default function ChatInterface(props: ChatInterfaceProps) {
 
     // Welcome message based on topic
     useEffect(() => {
-        let welcomeMsg = "안녕하세요, 100년 한의학 AI 헬스케어입니다. 궁금한 점을 체크해 보세요.";
+        let welcomeMsg = "안녕하세요, AI 스마일 덴탈케어입니다. 궁금한 점을 체크해 보세요.";
 
         if (isDentalFlow) {
             welcomeMsg = FLOWS[topic].initialMessage;
@@ -280,33 +280,33 @@ export default function ChatInterface(props: ChatInterfaceProps) {
 
     const modules = [
         {
-            id: "resilience",
-            label: "회복력·면역",
-            desc: "만성 피로, 잦은 감기",
+            id: "smile_test",
+            label: "스마일 인상체크",
+            desc: "AI 미소 분석",
             theme: "from-amber-500/20 to-orange-600/20"
         },
         {
-            id: "women",
-            label: "여성 밸런스",
-            desc: "생리불순, 갱년기 케어",
+            id: "breath_mbti",
+            label: "입냄새 MBTI",
+            desc: "구취 유형 분석",
             theme: "from-rose-400/20 to-pink-600/20"
         },
         {
-            id: "pain",
-            label: "통증 패턴",
-            desc: "만성 두통, 어깨 통증",
+            id: "teeth_age",
+            label: "치아 나이",
+            desc: "생활습관 분석",
             theme: "from-blue-400/20 to-slate-600/20"
         },
         {
-            id: "digestion",
-            label: "소화·수면 리듬",
-            desc: "소화불량, 수면장애",
+            id: "stain_risk",
+            label: "착색 위험도",
+            desc: "커피 습관 체크",
             theme: "from-emerald-400/20 to-teal-600/20"
         },
         {
-            id: "pregnancy",
-            label: "임신 준비",
-            desc: "난임, 건강한 임신",
+            id: "kids_mission",
+            label: "양치 히어로",
+            desc: "어린이 양치 습관",
             theme: "from-violet-400/20 to-purple-600/20"
         },
     ];
@@ -318,9 +318,9 @@ export default function ChatInterface(props: ChatInterfaceProps) {
                 <header className="bg-white/80 backdrop-blur-md border-b border-traditional-muted/50 px-6 py-4 flex items-center justify-between sticky top-0 z-50 transition-all duration-300">
                     <Link href="/" className="flex items-center gap-3 group">
                         <div className="w-8 h-8 bg-traditional-primary rounded-lg flex items-center justify-center shadow-sm group-hover:bg-traditional-accent transition-colors duration-300">
-                            <span className="text-white text-xs font-bold font-serif">JK</span>
+                            <span className="text-white text-xs font-bold font-serif">AI</span>
                         </div>
-                        <span className="text-lg font-bold text-traditional-text tracking-tight group-hover:text-traditional-primary transition-colors">100년 한의학 AI 헬스케어</span>
+                        <span className="text-lg font-bold text-traditional-text tracking-tight group-hover:text-traditional-primary transition-colors">AI 스마일 덴탈케어</span>
                     </Link>
                     <div className="hidden md:flex items-center gap-6 text-sm font-medium text-traditional-subtext">
                         <Link href="/login" className="px-6 py-2 bg-traditional-primary text-white text-sm font-medium rounded-full hover:bg-traditional-accent hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
@@ -334,19 +334,26 @@ export default function ChatInterface(props: ChatInterfaceProps) {
                 {/* Hero Banner - Hidden if embedded */}
                 {!props.isEmbedded && (
                     <div className="relative rounded-3xl overflow-hidden mb-8 h-[300px] md:h-[380px] shadow-2xl group">
-                        <div className="absolute inset-0 bg-[url('/images/herbal-bg.png')] bg-cover bg-center transition-transform duration-700 group-hover:scale-105 opacity-90 grayscale-[20%] sepia-[10%]"></div>
+                        <video
+                            src="/1.mp4"
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90"
+                        />
                         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
                         <div className="absolute inset-0 bg-traditional-primary/20 mix-blend-multiply"></div>
 
                         <div className="relative z-10 h-full flex flex-col justify-center p-8 md:p-12">
                             <div className="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white text-xs font-medium mb-4 w-fit">
-                                AI Health Analysis
+                                AI Dental Analysis
                             </div>
                             <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 drop-shadow-lg font-serif leading-tight">
-                                AI 헬스케어로<br />알아보는 나의 건강
+                                AI 스마일 덴탈케어로<br />시작하는 치아 건강
                             </h2>
                             <p className="text-white/90 text-sm md:text-base font-light mb-4 max-w-lg leading-relaxed">
-                                100년 전통의 한의학 지혜와 최첨단 AI 기술이 만나<br />당신만의 건강 리듬을 찾아드립니다.
+                                최첨단 AI 기술로 당신의 미소를 분석하고<br />맞춤형 치아 관리 솔루션을 제공합니다.
                             </p>
 
                             {/* Module List (Overlay on Hero) */}

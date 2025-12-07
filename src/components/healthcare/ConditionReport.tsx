@@ -32,8 +32,8 @@ export default function ConditionReport({ result, onRetry }: ConditionReportProp
 
                 {/* Header */}
                 <div className="text-center space-y-2">
-                    <h2 className="text-2xl font-bold text-traditional-text">나의 건강 리듬 리포트</h2>
-                    <p className="text-sm text-traditional-subtext">AI가 분석한 현재 컨디션입니다.</p>
+                    <h2 className="text-2xl font-bold text-traditional-text">나의 치아 건강 리포트</h2>
+                    <p className="text-sm text-traditional-subtext">AI가 분석한 현재 구강 상태입니다.</p>
                 </div>
 
                 {/* Score Card */}
@@ -45,7 +45,7 @@ export default function ConditionReport({ result, onRetry }: ConditionReportProp
                     <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-traditional-secondary to-traditional-accent opacity-30" />
 
                     <div className="space-y-4">
-                        <h3 className="text-traditional-subtext font-medium">종합 리듬 점수</h3>
+                        <h3 className="text-traditional-subtext font-medium">치아 건강 점수</h3>
                         <div className={`text-6xl font-black ${getScoreColor(result.rhythm_score)}`}>
                             {result.rhythm_score}
                             <span className="text-2xl text-traditional-subtext font-normal ml-1">점</span>

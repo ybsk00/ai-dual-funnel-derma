@@ -33,9 +33,9 @@ export default function PatientHeader() {
         <header className="bg-white/80 backdrop-blur-md border-b border-traditional-muted/50 px-6 py-4 flex items-center justify-between sticky top-0 z-20 transition-all duration-300">
             <Link href="/medical/dashboard" className="flex items-center gap-3 group">
                 <div className="w-8 h-8 bg-traditional-primary rounded-lg flex items-center justify-center shadow-sm group-hover:bg-traditional-accent transition-colors duration-300">
-                    <span className="text-white text-xs font-bold font-serif">JK</span>
+                    <span className="text-white text-xs font-bold font-serif">AI</span>
                 </div>
-                <span className="text-lg font-bold text-traditional-text tracking-tight group-hover:text-traditional-primary transition-colors">죽전한의원 <span className="text-traditional-accent font-light">AI</span></span>
+                <span className="text-lg font-bold text-traditional-text tracking-tight group-hover:text-traditional-primary transition-colors">AI 스마일 덴탈케어 <span className="text-traditional-accent font-light">AI</span></span>
             </Link>
 
             <div className="flex items-center gap-4">

@@ -10,8 +10,8 @@ const notoSansKr = Noto_Sans_KR({
 });
 
 export const metadata: Metadata = {
-  title: "죽전한의원 - 100년 전통의 맥",
-  description: "2대째 이어오는 100년 전통 죽전한의원입니다.",
+  title: "AI 스마일 덴탈케어 - 당신의 미소를 위한 AI 솔루션",
+  description: "최첨단 AI 기술로 분석하는 당신의 치아 건강, AI 스마일 덴탈케어입니다.",
 };
 
 export default function RootLayout({

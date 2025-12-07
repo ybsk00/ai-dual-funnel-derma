@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Activity, Moon, Sun, Heart, Baby, CheckCircle, BarChart2, Calendar } from "lucide-react";
+import { ArrowRight, Activity, Smile, Wind, Clock, Coffee, Baby, CheckCircle, BarChart2, Calendar } from "lucide-react";
 
 export default function LandingPage() {
   return (
@@ -9,9 +9,9 @@ export default function LandingPage() {
         <div className="flex items-center justify-between px-6 py-4 max-w-7xl mx-auto">
           <div className="flex items-center gap-3 group cursor-pointer">
             <div className="w-8 h-8 bg-traditional-primary rounded-lg flex items-center justify-center shadow-md group-hover:bg-traditional-accent transition-colors duration-300">
-              <span className="text-white text-sm font-bold font-serif">JK</span>
+              <span className="text-white text-sm font-bold font-serif">AI</span>
             </div>
-            <span className="text-xl font-bold text-traditional-text tracking-tight group-hover:text-traditional-primary transition-colors">100년 한의학 AI 헬스케어</span>
+            <span className="text-xl font-bold text-traditional-text tracking-tight group-hover:text-traditional-primary transition-colors">AI 스마일 덴탈케어</span>
           </div>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-traditional-subtext">
             {/* Navigation links removed as per request */}
@@ -39,7 +39,7 @@ export default function LandingPage() {
               playsInline
               className="w-full h-full object-cover opacity-40 mix-blend-multiply filter sepia-[0.3]"
             >
-              <source src="/grok-video-d2ce9230-c0a9-4bed-9097-3443b0c49cfd.mp4" type="video/mp4" />
+              <source src="/1.mp4" type="video/mp4" />
             </video>
           </div>
           {/* Texture Overlay */}
@@ -48,24 +48,24 @@ export default function LandingPage() {
 
         <div className="relative z-10 max-w-5xl mx-auto space-y-8 animate-fade-in">
           <div className="inline-block px-4 py-1.5 rounded-full bg-white/30 backdrop-blur-sm border border-white/40 text-traditional-primary text-sm font-semibold mb-4 shadow-sm animate-slide-up">
-            AI 기반 맞춤형 한방 헬스케어
+            AI 기반 맞춤형 덴탈 헬스케어
           </div>
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-traditional-text drop-shadow-sm leading-tight font-serif">
             <span className="block text-2xl md:text-3xl mb-6 font-sans font-light text-traditional-subtext tracking-widest uppercase">
-              Tradition Meets Intelligence
+              Smart Dental Care
             </span>
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-traditional-primary via-traditional-secondary to-traditional-accent">
-              100년의 지혜
-            </span>와<br />
+              최첨단 치의학
+            </span>과<br />
             <span className="text-traditional-text">AI의 만남</span>
           </h1>
           <p className="text-lg md:text-xl text-traditional-subtext max-w-2xl mx-auto leading-relaxed font-light">
-            당신의 맥박, 체질, 생활 습관을 AI가 분석하여<br className="hidden md:block" />
-            가장 현대적인 한방 솔루션을 제안합니다.
+            당신의 구강 상태, 미소, 생활 습관을 AI가 분석하여<br className="hidden md:block" />
+            가장 이상적인 치아 관리 솔루션을 제안합니다.
           </p>
           <div className="pt-8 flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link
-              href="/healthcare/chat?topic=resilience"
+              href="/healthcare/chat?topic=smile_test"
               className="group relative inline-flex items-center px-8 py-4 bg-traditional-primary text-white text-lg font-medium rounded-full overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
             >
               <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out"></span>
@@ -102,20 +102,20 @@ export default function LandingPage() {
             {[
               {
                 icon: <BarChart2 className="w-8 h-8 text-traditional-accent" />,
-                title: "실시간 데이터 분석",
-                desc: "사용자의 건강 데이터를 실시간으로 수집하고 분석하여 현재 상태를 정확하게 진단합니다.",
+                title: "실시간 구강 분석",
+                desc: "사용자의 치아 상태를 실시간으로 분석하여 충치, 착색, 잇몸 질환 위험도를 진단합니다.",
                 bg: "bg-orange-50/50"
               },
               {
                 icon: <Activity className="w-8 h-8 text-traditional-primary" />,
-                title: "체질 맞춤 처방",
-                desc: "사상체질과 유전적 요인을 고려하여 개인에게 최적화된 한방 처방과 생활 가이드를 제공합니다.",
+                title: "맞춤형 예방 관리",
+                desc: "개인의 생활 습관과 치아 특성을 고려하여 최적화된 양치법과 관리 가이드를 제공합니다.",
                 bg: "bg-green-50/50"
               },
               {
                 icon: <Calendar className="w-8 h-8 text-traditional-secondary" />,
-                title: "지속적 건강 관리",
-                desc: "일회성 진료가 아닌, 지속적인 모니터링과 피드백을 통해 건강한 생활 습관을 형성합니다.",
+                title: "평생 치아 주치의",
+                desc: "일회성 치료가 아닌, 정기적인 검진 알림과 AI 모니터링으로 평생 건강한 치아를 지켜드립니다.",
                 bg: "bg-brown-50/50"
               }
             ].map((feature, idx) => (
@@ -152,67 +152,67 @@ export default function LandingPage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-            {/* Module 1: Resilience */}
-            <Link href="/healthcare/chat?topic=resilience" className="group">
+            {/* Module 1: Smile Test */}
+            <Link href="/healthcare/chat?topic=smile_test" className="group">
               <div className="h-full bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] flex flex-col items-center text-center group-hover:backdrop-blur-lg">
                 <div className="w-14 h-14 bg-gradient-to-br from-orange-100 to-orange-200 rounded-full flex items-center justify-center mb-6 shadow-lg group-hover:shadow-orange-500/30 transition-all duration-300">
-                  <Sun className="w-7 h-7 text-orange-600 group-hover:scale-110 transition-transform" />
+                  <Smile className="w-7 h-7 text-orange-600 group-hover:scale-110 transition-transform" />
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2 tracking-wide">회복력·면역</h3>
+                <h3 className="text-lg font-bold text-white mb-2 tracking-wide">스마일 인상체크</h3>
                 <p className="text-xs text-white/70 leading-relaxed font-light">
-                  만성 피로와 잦은 감기,<br />면역력 저하 케어
+                  AI 미소 분석과<br />첫인상 솔루션
                 </p>
               </div>
             </Link>
 
-            {/* Module 2: Women */}
-            <Link href="/healthcare/chat?topic=women" className="group">
+            {/* Module 2: Breath MBTI */}
+            <Link href="/healthcare/chat?topic=breath_mbti" className="group">
               <div className="h-full bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] flex flex-col items-center text-center group-hover:backdrop-blur-lg">
                 <div className="w-14 h-14 bg-gradient-to-br from-pink-100 to-pink-200 rounded-full flex items-center justify-center mb-6 shadow-lg group-hover:shadow-pink-500/30 transition-all duration-300">
-                  <Moon className="w-7 h-7 text-pink-600 group-hover:scale-110 transition-transform" />
+                  <Wind className="w-7 h-7 text-pink-600 group-hover:scale-110 transition-transform" />
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2 tracking-wide">여성 밸런스</h3>
+                <h3 className="text-lg font-bold text-white mb-2 tracking-wide">입냄새 MBTI</h3>
                 <p className="text-xs text-white/70 leading-relaxed font-light">
-                  월경 불순부터 갱년기까지<br />여성 생애주기 관리
+                  나의 구취 유형과<br />맞춤 관리법
                 </p>
               </div>
             </Link>
 
-            {/* Module 3: Pain */}
-            <Link href="/healthcare/chat?topic=pain" className="group">
+            {/* Module 3: Teeth Age */}
+            <Link href="/healthcare/chat?topic=teeth_age" className="group">
               <div className="h-full bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] flex flex-col items-center text-center group-hover:backdrop-blur-lg">
                 <div className="w-14 h-14 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center mb-6 shadow-lg group-hover:shadow-blue-500/30 transition-all duration-300">
-                  <Activity className="w-7 h-7 text-blue-600 group-hover:scale-110 transition-transform" />
+                  <Clock className="w-7 h-7 text-blue-600 group-hover:scale-110 transition-transform" />
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2 tracking-wide">통증 패턴</h3>
+                <h3 className="text-lg font-bold text-white mb-2 tracking-wide">치아 나이</h3>
                 <p className="text-xs text-white/70 leading-relaxed font-light">
-                  반복되는 두통, 관절통,<br />근골격계 통증 분석
+                  생활 습관으로 보는<br />내 치아의 나이
                 </p>
               </div>
             </Link>
 
-            {/* Module 4: Digestion */}
-            <Link href="/healthcare/chat?topic=digestion" className="group">
+            {/* Module 4: Stain Risk */}
+            <Link href="/healthcare/chat?topic=stain_risk" className="group">
               <div className="h-full bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] flex flex-col items-center text-center group-hover:backdrop-blur-lg">
                 <div className="w-14 h-14 bg-gradient-to-br from-green-100 to-green-200 rounded-full flex items-center justify-center mb-6 shadow-lg group-hover:shadow-green-500/30 transition-all duration-300">
-                  <Heart className="w-7 h-7 text-green-600 group-hover:scale-110 transition-transform" />
+                  <Coffee className="w-7 h-7 text-green-600 group-hover:scale-110 transition-transform" />
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2 tracking-wide">소화·수면</h3>
+                <h3 className="text-lg font-bold text-white mb-2 tracking-wide">착색 위험도</h3>
                 <p className="text-xs text-white/70 leading-relaxed font-light">
-                  위장 장애와 불면증,<br />생활 리듬 회복
+                  커피/차 습관과<br />치아 미백 관리
                 </p>
               </div>
             </Link>
 
-            {/* Module 5: Pregnancy */}
-            <Link href="/healthcare/chat?topic=pregnancy" className="group">
+            {/* Module 5: Kids Mission */}
+            <Link href="/healthcare/chat?topic=kids_mission" className="group">
               <div className="h-full bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] flex flex-col items-center text-center group-hover:backdrop-blur-lg">
                 <div className="w-14 h-14 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full flex items-center justify-center mb-6 shadow-lg group-hover:shadow-purple-500/30 transition-all duration-300">
                   <Baby className="w-7 h-7 text-purple-600 group-hover:scale-110 transition-transform" />
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2 tracking-wide">임신 준비</h3>
+                <h3 className="text-lg font-bold text-white mb-2 tracking-wide">양치 히어로</h3>
                 <p className="text-xs text-white/70 leading-relaxed font-light">
-                  난임 극복과 건강한<br />임신을 위한 준비
+                  어린이를 위한<br />즐거운 양치 습관
                 </p>
               </div>
             </Link>
@@ -226,9 +226,9 @@ export default function LandingPage() {
           <div className="space-y-6">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 bg-traditional-primary rounded-lg flex items-center justify-center">
-                <span className="text-white text-xs font-bold font-serif">JK</span>
+                <span className="text-white text-xs font-bold font-serif">AI</span>
               </div>
-              <span className="text-xl font-bold text-traditional-text font-serif">죽전한의원</span>
+              <span className="text-xl font-bold text-traditional-text font-serif">AI 스마일 덴탈케어</span>
             </div>
             <div className="text-sm text-traditional-subtext space-y-2 font-light">
               <p className="flex items-center gap-2"><span className="w-16 font-medium text-traditional-text/80">주소</span> 대구광역시 달서구 와룡로 282 3-4층</p>
@@ -249,7 +249,7 @@ export default function LandingPage() {
           </div>
         </div>
         <div className="max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-traditional-muted/50 text-center text-xs text-traditional-subtext/60 font-light">
-          <p>© 2025 죽전한의원. All rights reserved. 본 사이트의 콘텐츠는 저작권법의 보호를 받습니다.</p>
+          <p>© 2025 AI 스마일 덴탈케어. All rights reserved. 본 사이트의 콘텐츠는 저작권법의 보호를 받습니다.</p>
         </div>
       </footer>
 
