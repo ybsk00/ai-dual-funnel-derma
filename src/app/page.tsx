@@ -11,7 +11,7 @@ export default function LandingPage() {
             <div className="w-8 h-8 bg-traditional-primary rounded-lg flex items-center justify-center shadow-md group-hover:bg-traditional-accent transition-colors duration-300">
               <span className="text-white text-sm font-bold font-serif">JK</span>
             </div>
-            <span className="text-xl font-bold text-traditional-text tracking-tight group-hover:text-traditional-primary transition-colors">죽전한의원 <span className="text-traditional-accent font-light">AI</span></span>
+            <span className="text-xl font-bold text-traditional-text tracking-tight group-hover:text-traditional-primary transition-colors">100년 한의학 AI 헬스케어</span>
           </div>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-traditional-subtext">
             {/* Navigation links removed as per request */}
