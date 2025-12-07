@@ -42,8 +42,8 @@ export default function LandingPage() {
               <source src="/1.mp4" type="video/mp4" />
             </video>
           </div>
-          {/* Texture Overlay */}
-          <div className="absolute inset-0 opacity-20 bg-[url('/texture-hanji.png')] pointer-events-none mix-blend-overlay"></div>
+          {/* Texture Overlay Removed for Modern Look */}
+          {/* <div className="absolute inset-0 opacity-20 bg-[url('/texture-hanji.png')] pointer-events-none mix-blend-overlay"></div> */}
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto space-y-8 animate-fade-in">

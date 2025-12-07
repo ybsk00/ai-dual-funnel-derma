@@ -11,16 +11,16 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        // Healthcare Theme (Traditional/Hanji + AI)
+        // Healthcare Theme (Modern Dental)
         traditional: {
-          bg: "#F9F7F2", // Warmer, deeper Hanji tone
-          text: "#1A1A1A", // Softer Black
-          subtext: "#4A4A4A", // Dark Gray
-          primary: "#2C3E2C", // Deep Forest Green (Traditional)
-          secondary: "#8C6A4A", // Deep Earthy Brown
-          accent: "#D4AF37", // Muted Gold (Sophistication)
-          muted: "#E5E0D5", // Warm Gray
-          ai: "#3B82F6", // AI Blue (Subtle accent)
+          bg: "#FFFFFF", // Clean White
+          text: "#0F172A", // Slate 900 (Sharp, Professional)
+          subtext: "#64748B", // Slate 500 (Modern Gray)
+          primary: "#005F73", // Deep Teal/Navy (Trust & Professionalism)
+          secondary: "#0A9396", // Medical Teal (Freshness)
+          accent: "#94D2BD", // Soft Mint (Calm & Clean)
+          muted: "#E2E8F0", // Slate 200 (Subtle Borders)
+          ai: "#3B82F6", // AI Blue (Kept for consistency)
         },
         // Medical Theme (Modern/Clinic - Integrated with Traditional)
         medical: {
