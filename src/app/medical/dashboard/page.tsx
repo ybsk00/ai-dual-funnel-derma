@@ -140,71 +140,101 @@ export default function DoctorDashboard() {
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-traditional-muted/30">
-                        {visits.length === 0 ? (
+                        {visits
+                            .filter(visit => {
+                                if (activeFilter === "전체") return true;
+                                if (activeFilter === "대기") return visit.status === "scheduled";
+                                if (activeFilter === "완료") return visit.status === "completed";
+                                if (activeFilter === "취소") return visit.status === "cancelled";
+                                return true;
+                            })
+                            .length === 0 ? (
                             <tr>
                                 <td colSpan={4} className="px-8 py-16 text-center text-traditional-subtext">
                                     <div className="flex flex-col items-center gap-3">
                                         <Calendar className="w-10 h-10 text-traditional-muted" />
-                                        <p>예약된 환자가 없습니다.</p>
+                                        <p>
+                                            {activeFilter === "전체" ? "예약된 환자가 없습니다." :
+                                                activeFilter === "대기" ? "대기 중인 환자가 없습니다." :
+                                                    activeFilter === "완료" ? "진료 완료된 환자가 없습니다." :
+                                                        "취소된 예약이 없습니다."}
+                                        </p>
                                     </div>
                                 </td>
                             </tr>
                         ) : (
-                            visits.map((visit) => (
-                                <tr key={visit.id} className="hover:bg-white/50 transition-colors group">
-                                    <td className="px-8 py-5 text-traditional-text font-medium font-mono text-base">
-                                        {new Date(visit.visit_date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                                    </td>
-                                    <td className="px-8 py-5">
-                                        <div className="flex items-center gap-3">
-                                            <div className="w-10 h-10 rounded-full bg-traditional-bg border border-traditional-muted flex items-center justify-center text-traditional-subtext">
-                                                <User size={18} />
-                                            </div>
-                                            <div>
-                                                <div className="flex items-center gap-2">
-                                                    <span className="font-bold text-traditional-text text-base">{visit.patient.name}</span>
-                                                    <span className="text-xs px-2 py-0.5 rounded-full font-medium bg-blue-100 text-blue-700">
-                                                        {visit.visit_type}
-                                                    </span>
+                            visits
+                                .filter(visit => {
+                                    if (activeFilter === "전체") return true;
+                                    if (activeFilter === "대기") return visit.status === "scheduled";
+                                    if (activeFilter === "완료") return visit.status === "completed";
+                                    if (activeFilter === "취소") return visit.status === "cancelled";
+                                    return true;
+                                })
+                                .map((visit) => (
+                                    <tr key={visit.id} className={`hover:bg-white/50 transition-colors group ${visit.status === 'cancelled' ? 'opacity-60 bg-gray-50' : ''}`}>
+                                        <td className="px-8 py-5 text-traditional-text font-medium font-mono text-base">
+                                            {new Date(visit.visit_date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                        </td>
+                                        <td className="px-8 py-5">
+                                            <div className="flex items-center gap-3">
+                                                <div className="w-10 h-10 rounded-full bg-traditional-bg border border-traditional-muted flex items-center justify-center text-traditional-subtext">
+                                                    <User size={18} />
                                                 </div>
-                                                <div className="text-xs text-traditional-subtext mt-0.5">
-                                                    {visit.patient.phone}
+                                                <div>
+                                                    <div className="flex items-center gap-2">
+                                                        <span className={`font-bold text-base ${visit.status === 'cancelled' ? 'text-gray-500 line-through' : 'text-traditional-text'}`}>{visit.patient.name}</span>
+                                                        <span className="text-xs px-2 py-0.5 rounded-full font-medium bg-blue-100 text-blue-700">
+                                                            {visit.visit_type}
+                                                        </span>
+                                                    </div>
+                                                    <div className="text-xs text-traditional-subtext mt-0.5">
+                                                        {visit.patient.phone}
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td className="px-8 py-5">
-                                        <button
-                                            onClick={() => { setSelectedVisit(visit); setShowChatModal(true); }}
-                                            className="text-traditional-subtext hover:text-traditional-primary hover:underline text-left flex items-center gap-2 group-hover:translate-x-1 transition-all"
-                                        >
-                                            <MessageSquare size={16} className="text-traditional-muted group-hover:text-traditional-primary" />
-                                            <span className="line-clamp-1">{visit.chief_complaint}</span>
-                                        </button>
-                                    </td>
-                                    <td className="px-8 py-5">
-                                        <button
-                                            onClick={() => handleStatusClick(visit)}
-                                            className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold transition-all shadow-sm ${visit.status === 'completed'
-                                                ? 'bg-traditional-primary/10 text-traditional-primary border border-traditional-primary/20 hover:bg-traditional-primary/20'
-                                                : 'bg-white border border-traditional-muted text-traditional-subtext hover:bg-traditional-bg'
-                                                }`}
-                                        >
-                                            {visit.status === 'completed' ? (
-                                                <>
-                                                    <CheckCircle2 size={16} />
-                                                    진료 완료
-                                                </>
-                                            ) : (
-                                                <>
-                                                    <Clock size={16} />
-                                                    진료 대기
-                                                </>
-                                            )}
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))
+                                        </td>
+                                        <td className="px-8 py-5">
+                                            <button
+                                                onClick={() => { setSelectedVisit(visit); setShowChatModal(true); }}
+                                                className="text-traditional-subtext hover:text-traditional-primary hover:underline text-left flex items-center gap-2 group-hover:translate-x-1 transition-all"
+                                            >
+                                                <MessageSquare size={16} className="text-traditional-muted group-hover:text-traditional-primary" />
+                                                <span className="line-clamp-1">{visit.chief_complaint}</span>
+                                            </button>
+                                        </td>
+                                        <td className="px-8 py-5">
+                                            <button
+                                                onClick={() => handleStatusClick(visit)}
+                                                disabled={visit.status === 'cancelled'}
+                                                className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold transition-all shadow-sm 
+                                                    ${visit.status === 'completed'
+                                                        ? 'bg-traditional-primary/10 text-traditional-primary border border-traditional-primary/20 hover:bg-traditional-primary/20'
+                                                        : visit.status === 'cancelled'
+                                                            ? 'bg-red-50 text-red-500 border border-red-100 cursor-not-allowed'
+                                                            : 'bg-white border border-traditional-muted text-traditional-subtext hover:bg-traditional-bg'
+                                                    }`}
+                                            >
+                                                {visit.status === 'completed' ? (
+                                                    <>
+                                                        <CheckCircle2 size={16} />
+                                                        진료 완료
+                                                    </>
+                                                ) : visit.status === 'cancelled' ? (
+                                                    <>
+                                                        <X size={16} />
+                                                        예약 취소
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <Clock size={16} />
+                                                        진료 대기
+                                                    </>
+                                                )}
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))
                         )}
                     </tbody>
                 </table>

@@ -141,11 +141,17 @@ export default function LoginPage() {
             <div className="absolute inset-0 opacity-10 bg-[url('/texture-hanji.png')] pointer-events-none mix-blend-multiply"></div>
 
             <div className="w-full max-w-md bg-white p-8 rounded-2xl shadow-lg border border-traditional-muted relative z-10 animate-fade-in">
-                <Link href="/" className="absolute top-6 left-6 text-traditional-subtext hover:text-traditional-text">
-                    <ArrowLeft size={24} />
-                </Link>
+                {/* Branding Logo */}
+                <div className="flex justify-center mb-6">
+                    <Link href="/" className="flex items-center gap-3 group">
+                        <div className="w-10 h-10 bg-traditional-primary rounded-xl flex items-center justify-center shadow-md group-hover:bg-traditional-accent transition-colors duration-300">
+                            <span className="text-white text-sm font-bold font-serif">AI</span>
+                        </div>
+                        <span className="text-xl font-bold text-traditional-text tracking-tight group-hover:text-traditional-primary transition-colors">AI 스마일 덴탈케어</span>
+                    </Link>
+                </div>
 
-                <div className="text-center mb-8 mt-4">
+                <div className="text-center mb-8">
                     <h1 className="text-2xl font-bold text-traditional-text mb-2">
                         {isSignUp ? "회원가입" : "로그인"}
                     </h1>
@@ -277,6 +283,13 @@ export default function LoginPage() {
                             Google로 시작하기
                         </button>
                     </div>
+                </div>
+
+                <div className="mt-8 pt-6 border-t border-traditional-muted/50 text-center">
+                    <Link href="/" className="text-traditional-subtext hover:text-traditional-text text-sm flex items-center justify-center gap-2 transition-colors">
+                        <ArrowLeft size={16} />
+                        메인으로 돌아가기
+                    </Link>
                 </div>
             </div>
         </div>
