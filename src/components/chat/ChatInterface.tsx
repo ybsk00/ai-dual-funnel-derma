@@ -108,7 +108,7 @@ export default function ChatInterface(props: ChatInterfaceProps) {
                         .from('patients')
                         .select('id')
                         .eq('user_id', user.id)
-                        .single();
+                        .maybeSingle();
                     if (patient) {
                         setPatientId(patient.id);
                     }

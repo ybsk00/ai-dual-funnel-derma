@@ -29,7 +29,7 @@ export default function PatientDashboard() {
                 .from('patients')
                 .select('id, name')
                 .eq('user_id', user.id)
-                .single();
+                .maybeSingle();
 
             if (patientData) {
                 currentPatientId = patientData.id;
@@ -61,7 +61,7 @@ export default function PatientDashboard() {
                     .in('status', ['scheduled', 'in_progress'])
                     .order('visit_date', { ascending: true })
                     .limit(1)
-                    .single();
+                    .maybeSingle();
 
                 if (visitData) {
                     const date = new Date(visitData.visit_date);

@@ -37,33 +37,75 @@ export default function ReservationModal({ isOpen, onClose, initialTab = "book",
             setError("환자 정보를 찾을 수 없습니다. 다시 로그인해주세요.");
             return;
         }
-        if (!date || !time) {
-            setError("날짜와 시간을 모두 선택해주세요.");
-            return;
+
+        // Validation based on tab
+        if (activeTab === 'book' || activeTab === 'reschedule') {
+            if (!date || !time) {
+                setError("날짜와 시간을 모두 선택해주세요.");
+                return;
+            }
         }
 
         setIsSubmitting(true);
         setError(null);
 
         try {
-            const visitDate = new Date(`${date}T${time}`);
+            if (activeTab === 'book') {
+                const visitDate = new Date(`${date}T${time}`);
+                const { error: insertError } = await supabase
+                    .from('visits')
+                    .insert({
+                        patient_id: patientId,
+                        visit_date: visitDate.toISOString(),
+                        visit_type: 'consultation',
+                        status: 'scheduled',
+                        chief_complaint: '환자 직접 예약'
+                    });
+                if (insertError) throw insertError;
+            } else {
+                // For Reschedule/Cancel, find the latest scheduled visit
+                const { data: latestVisit, error: fetchError } = await supabase
+                    .from('visits')
+                    .select('id')
+                    .eq('patient_id', patientId)
+                    .in('status', ['scheduled', 'rescheduled'])
+                    .order('visit_date', { ascending: false })
+                    .limit(1)
+                    .maybeSingle();
 
-            const { error: insertError } = await supabase
-                .from('visits')
-                .insert({
-                    patient_id: patientId,
-                    visit_date: visitDate.toISOString(),
-                    visit_type: 'consultation',
-                    status: 'scheduled',
-                    chief_complaint: '환자 직접 예약'
-                });
+                if (fetchError) throw fetchError;
+                if (!latestVisit) {
+                    setError("변경/취소할 예약 내역이 없습니다.");
+                    setIsSubmitting(false);
+                    return;
+                }
 
-            if (insertError) throw insertError;
+                if (activeTab === 'reschedule') {
+                    const visitDate = new Date(`${date}T${time}`);
+                    const { error: updateError } = await supabase
+                        .from('visits')
+                        .update({
+                            visit_date: visitDate.toISOString(),
+                            status: 'rescheduled'
+                        })
+                        .eq('id', latestVisit.id);
+                    if (updateError) throw updateError;
+                } else if (activeTab === 'cancel') {
+                    const { error: updateError } = await supabase
+                        .from('visits')
+                        .update({
+                            status: 'cancelled',
+                            cancellation_reason: '사용자 직접 취소' // Assuming column exists or just status
+                        })
+                        .eq('id', latestVisit.id);
+                    if (updateError) throw updateError;
+                }
+            }
 
             setStep(3);
         } catch (err: any) {
             console.error("Reservation error:", err);
-            setError("예약 처리 중 오류가 발생했습니다.");
+            setError("처리 중 오류가 발생했습니다.");
         } finally {
             setIsSubmitting(false);
         }
