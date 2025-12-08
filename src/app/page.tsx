@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Activity, Smile, Wind, Clock, Coffee, Baby, CheckCircle, BarChart2, Calendar } from "lucide-react";
+import { ArrowRight, Activity, Smile, Sun, Droplets, Search, Sparkles, Calendar, User } from "lucide-react";
 
 export default function LandingPage() {
   return (
@@ -11,7 +11,7 @@ export default function LandingPage() {
             <div className="w-8 h-8 bg-traditional-primary rounded-lg flex items-center justify-center shadow-md group-hover:bg-traditional-accent transition-colors duration-300">
               <span className="text-white text-sm font-bold font-serif">AI</span>
             </div>
-            <span className="text-xl font-bold text-traditional-text tracking-tight group-hover:text-traditional-primary transition-colors">AI 스마일 덴탈케어</span>
+            <span className="text-xl font-bold text-traditional-text tracking-tight group-hover:text-traditional-primary transition-colors">AI 피부 헬스케어</span>
           </div>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-traditional-subtext">
             {/* Navigation links removed as per request */}
@@ -39,38 +39,36 @@ export default function LandingPage() {
               playsInline
               className="w-full h-full object-cover opacity-40 mix-blend-multiply filter sepia-[0.3]"
             >
-              <source src="/1.mp4" type="video/mp4" />
+              <source src="/2.mp4" type="video/mp4" />
             </video>
           </div>
-          {/* Texture Overlay Removed for Modern Look */}
-          {/* <div className="absolute inset-0 opacity-20 bg-[url('/texture-hanji.png')] pointer-events-none mix-blend-overlay"></div> */}
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto space-y-8 animate-fade-in">
           <div className="inline-block px-4 py-1.5 rounded-full bg-white/30 backdrop-blur-sm border border-white/40 text-traditional-primary text-sm font-semibold mb-4 shadow-sm animate-slide-up">
-            AI 기반 맞춤형 덴탈 헬스케어
+            AI 기반 맞춤형 스킨 헬스케어
           </div>
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-traditional-text drop-shadow-sm leading-tight font-serif">
             <span className="block text-2xl md:text-3xl mb-6 font-sans font-light text-traditional-subtext tracking-widest uppercase">
-              Smart Dental Care
+              Smart Skin Care
             </span>
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-traditional-primary via-traditional-secondary to-traditional-accent">
-              최첨단 치의학
+              최첨단 피부과학
             </span>과<br />
             <span className="text-traditional-text">AI의 만남</span>
           </h1>
           <p className="text-lg md:text-xl text-traditional-subtext max-w-2xl mx-auto leading-relaxed font-light">
-            당신의 구강 상태, 미소, 생활 습관을 AI가 분석하여<br className="hidden md:block" />
-            가장 이상적인 치아 관리 솔루션을 제안합니다.
+            당신의 피부 타입, 노화 정도, 생활 습관을 AI가 분석하여<br className="hidden md:block" />
+            가장 이상적인 피부 관리 솔루션을 제안합니다.
           </p>
           <div className="pt-8 flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link
-              href="/healthcare/chat?topic=smile_test"
+              href="/healthcare/chat?topic=skin_mbti"
               className="group relative inline-flex items-center px-8 py-4 bg-traditional-primary text-white text-lg font-medium rounded-full overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
             >
               <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out"></span>
               <span className="relative flex items-center gap-2">
-                AI 건강 분석 시작하기 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                AI 피부 분석 시작하기 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </span>
             </Link>
             <Link
@@ -90,32 +88,32 @@ export default function LandingPage() {
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="text-center mb-20 space-y-4">
             <h2 className="text-3xl md:text-4xl font-bold text-traditional-text font-serif">
-              AI 헬스케어 솔루션
+              AI 스킨케어 솔루션
             </h2>
             <p className="text-traditional-subtext max-w-2xl mx-auto">
-              최첨단 치의학의 전문성과 인공지능의 분석력이 만나<br />
-              당신만을 위한 최적의 치아 건강 솔루션을 찾아드립니다.
+              피부과 전문의의 노하우와 인공지능의 분석력이 만나<br />
+              당신만을 위한 최적의 피부 건강 솔루션을 찾아드립니다.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                icon: <BarChart2 className="w-8 h-8 text-traditional-accent" />,
-                title: "실시간 구강 분석",
-                desc: "사용자의 치아 상태를 실시간으로 분석하여 충치, 착색, 잇몸 질환 위험도를 진단합니다.",
+                icon: <Search className="w-8 h-8 text-traditional-accent" />,
+                title: "정밀 피부 분석",
+                desc: "사용자의 피부 상태를 정밀하게 분석하여 수분, 탄력, 색소 침착 등 피부 고민의 원인을 파악합니다.",
                 bg: "bg-orange-50/50"
               },
               {
-                icon: <Activity className="w-8 h-8 text-traditional-primary" />,
-                title: "맞춤형 예방 관리",
-                desc: "개인의 생활 습관과 치아 특성을 고려하여 최적화된 양치법과 관리 가이드를 제공합니다.",
+                icon: <Sparkles className="w-8 h-8 text-traditional-primary" />,
+                title: "맞춤형 루틴 처방",
+                desc: "개인의 피부 타입과 생활 패턴을 고려하여 최적화된 스킨케어 루틴과 제품을 추천합니다.",
                 bg: "bg-green-50/50"
               },
               {
-                icon: <Calendar className="w-8 h-8 text-traditional-secondary" />,
-                title: "평생 치아 주치의",
-                desc: "일회성 치료가 아닌, 정기적인 검진 알림과 AI 모니터링으로 평생 건강한 치아를 지켜드립니다.",
+                icon: <User className="w-8 h-8 text-traditional-secondary" />,
+                title: "전담 피부 주치의",
+                desc: "일회성 관리가 아닌, 지속적인 피부 변화 모니터링과 AI 상담으로 건강한 피부를 지켜드립니다.",
                 bg: "bg-brown-50/50"
               }
             ].map((feature, idx) => (
@@ -134,7 +132,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Modules Grid - "My Health" Section */}
+      {/* Modules Grid - "My Skin Health" Section */}
       <section className="relative py-32 overflow-hidden">
         {/* Background Image & Overlay */}
         <div className="absolute inset-0 z-0">
@@ -145,74 +143,74 @@ export default function LandingPage() {
 
         <div className="relative z-10 max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <span className="text-traditional-accent font-bold tracking-widest uppercase text-sm mb-2 block">My Health Rhythm</span>
+            <span className="text-traditional-accent font-bold tracking-widest uppercase text-sm mb-2 block">My Skin Rhythm</span>
             <h2 className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg font-serif">
-              AI 헬스케어로 알아보는 나의 건강
+              AI 헬스케어로 알아보는 나의 피부
             </h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-            {/* Module 1: Smile Test */}
-            <Link href="/healthcare/chat?topic=smile_test" className="group">
+            {/* Module 1: Skin MBTI */}
+            <Link href="/healthcare/chat?topic=skin_mbti" className="group">
               <div className="h-full bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] flex flex-col items-center text-center group-hover:backdrop-blur-lg">
-                <div className="w-14 h-14 bg-gradient-to-br from-orange-100 to-orange-200 rounded-full flex items-center justify-center mb-6 shadow-lg group-hover:shadow-orange-500/30 transition-all duration-300">
-                  <Smile className="w-7 h-7 text-orange-600 group-hover:scale-110 transition-transform" />
+                <div className="w-14 h-14 bg-gradient-to-br from-amber-100 to-amber-200 rounded-full flex items-center justify-center mb-6 shadow-lg group-hover:shadow-amber-500/30 transition-all duration-300">
+                  <Activity className="w-7 h-7 text-amber-600 group-hover:scale-110 transition-transform" />
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2 tracking-wide">스마일 인상체크</h3>
+                <h3 className="text-lg font-bold text-white mb-2 tracking-wide">피부 MBTI</h3>
                 <p className="text-xs text-white/70 leading-relaxed font-light">
-                  AI 미소 분석과<br />첫인상 솔루션
+                  나의 피부 성격과<br />맞춤 관리법
                 </p>
               </div>
             </Link>
 
-            {/* Module 2: Breath MBTI */}
-            <Link href="/healthcare/chat?topic=breath_mbti" className="group">
+            {/* Module 2: Skin Age */}
+            <Link href="/healthcare/chat?topic=skin_age" className="group">
               <div className="h-full bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] flex flex-col items-center text-center group-hover:backdrop-blur-lg">
-                <div className="w-14 h-14 bg-gradient-to-br from-pink-100 to-pink-200 rounded-full flex items-center justify-center mb-6 shadow-lg group-hover:shadow-pink-500/30 transition-all duration-300">
-                  <Wind className="w-7 h-7 text-pink-600 group-hover:scale-110 transition-transform" />
+                <div className="w-14 h-14 bg-gradient-to-br from-rose-100 to-rose-200 rounded-full flex items-center justify-center mb-6 shadow-lg group-hover:shadow-rose-500/30 transition-all duration-300">
+                  <Calendar className="w-7 h-7 text-rose-600 group-hover:scale-110 transition-transform" />
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2 tracking-wide">입냄새 MBTI</h3>
+                <h3 className="text-lg font-bold text-white mb-2 tracking-wide">피부 나이</h3>
                 <p className="text-xs text-white/70 leading-relaxed font-light">
-                  나의 구취 유형과<br />맞춤 관리법
+                  생활 습관으로 보는<br />내 피부의 나이
                 </p>
               </div>
             </Link>
 
-            {/* Module 3: Teeth Age */}
-            <Link href="/healthcare/chat?topic=teeth_age" className="group">
+            {/* Module 3: UV Score */}
+            <Link href="/healthcare/chat?topic=uv_score" className="group">
               <div className="h-full bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] flex flex-col items-center text-center group-hover:backdrop-blur-lg">
                 <div className="w-14 h-14 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center mb-6 shadow-lg group-hover:shadow-blue-500/30 transition-all duration-300">
-                  <Clock className="w-7 h-7 text-blue-600 group-hover:scale-110 transition-transform" />
+                  <Sun className="w-7 h-7 text-blue-600 group-hover:scale-110 transition-transform" />
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2 tracking-wide">치아 나이</h3>
+                <h3 className="text-lg font-bold text-white mb-2 tracking-wide">자외선 점수</h3>
                 <p className="text-xs text-white/70 leading-relaxed font-light">
-                  생활 습관으로 보는<br />내 치아의 나이
+                  자외선 노출 위험도와<br />차단 관리법
                 </p>
               </div>
             </Link>
 
-            {/* Module 4: Stain Risk */}
-            <Link href="/healthcare/chat?topic=stain_risk" className="group">
+            {/* Module 4: Cleansing Lab */}
+            <Link href="/healthcare/chat?topic=cleansing_lab" className="group">
               <div className="h-full bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] flex flex-col items-center text-center group-hover:backdrop-blur-lg">
-                <div className="w-14 h-14 bg-gradient-to-br from-green-100 to-green-200 rounded-full flex items-center justify-center mb-6 shadow-lg group-hover:shadow-green-500/30 transition-all duration-300">
-                  <Coffee className="w-7 h-7 text-green-600 group-hover:scale-110 transition-transform" />
+                <div className="w-14 h-14 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-full flex items-center justify-center mb-6 shadow-lg group-hover:shadow-emerald-500/30 transition-all duration-300">
+                  <Droplets className="w-7 h-7 text-emerald-600 group-hover:scale-110 transition-transform" />
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2 tracking-wide">착색 위험도</h3>
+                <h3 className="text-lg font-bold text-white mb-2 tracking-wide">세안 연구소</h3>
                 <p className="text-xs text-white/70 leading-relaxed font-light">
-                  커피/차 습관과<br />치아 미백 관리
+                  내 피부에 딱 맞는<br />클렌징 루틴
                 </p>
               </div>
             </Link>
 
-            {/* Module 5: Kids Mission */}
-            <Link href="/healthcare/chat?topic=kids_mission" className="group">
+            {/* Module 5: Trouble Map */}
+            <Link href="/healthcare/chat?topic=trouble_map" className="group">
               <div className="h-full bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] flex flex-col items-center text-center group-hover:backdrop-blur-lg">
-                <div className="w-14 h-14 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full flex items-center justify-center mb-6 shadow-lg group-hover:shadow-purple-500/30 transition-all duration-300">
-                  <Baby className="w-7 h-7 text-purple-600 group-hover:scale-110 transition-transform" />
+                <div className="w-14 h-14 bg-gradient-to-br from-violet-100 to-violet-200 rounded-full flex items-center justify-center mb-6 shadow-lg group-hover:shadow-violet-500/30 transition-all duration-300">
+                  <Search className="w-7 h-7 text-violet-600 group-hover:scale-110 transition-transform" />
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2 tracking-wide">양치 히어로</h3>
+                <h3 className="text-lg font-bold text-white mb-2 tracking-wide">트러블 지도</h3>
                 <p className="text-xs text-white/70 leading-relaxed font-light">
-                  어린이를 위한<br />즐거운 양치 습관
+                  반복되는 트러블의<br />원인과 패턴 분석
                 </p>
               </div>
             </Link>
@@ -228,7 +226,7 @@ export default function LandingPage() {
               <div className="w-8 h-8 bg-traditional-primary rounded-lg flex items-center justify-center">
                 <span className="text-white text-xs font-bold font-serif">AI</span>
               </div>
-              <span className="text-xl font-bold text-traditional-text font-serif">AI 스마일 덴탈케어</span>
+              <span className="text-xl font-bold text-traditional-text font-serif">AI 피부 헬스케어</span>
             </div>
             <div className="text-sm text-traditional-subtext space-y-2 font-light">
               <p className="flex items-center gap-2"><span className="w-16 font-medium text-traditional-text/80">주소</span> 대구광역시 달서구 와룡로 282 3-4층</p>
@@ -249,7 +247,7 @@ export default function LandingPage() {
           </div>
         </div>
         <div className="max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-traditional-muted/50 text-center text-xs text-traditional-subtext/60 font-light">
-          <p>© 2025 AI 스마일 덴탈케어. All rights reserved. 본 사이트의 콘텐츠는 저작권법의 보호를 받습니다.</p>
+          <p>© 2025 AI 피부 헬스케어. All rights reserved. 본 사이트의 콘텐츠는 저작권법의 보호를 받습니다.</p>
         </div>
       </footer>
 

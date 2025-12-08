@@ -10,8 +10,8 @@ const notoSansKr = Noto_Sans_KR({
 });
 
 export const metadata: Metadata = {
-  title: "AI 스마일 덴탈케어 - 당신의 미소를 위한 AI 솔루션",
-  description: "최첨단 AI 기술로 분석하는 당신의 치아 건강, AI 스마일 덴탈케어입니다.",
+  title: "AI 피부 헬스케어 - 당신의 피부를 위한 AI 솔루션",
+  description: "최첨단 AI 기술로 분석하는 당신의 피부 건강, AI 피부 헬스케어입니다.",
 };
 
 export default function RootLayout({
