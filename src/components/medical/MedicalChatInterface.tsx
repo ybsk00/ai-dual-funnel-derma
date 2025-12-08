@@ -13,7 +13,11 @@ type Message = {
     imageUrl?: string;
 };
 
-export default function MedicalChatInterface() {
+type MedicalChatInterfaceProps = {
+    isEmbedded?: boolean;
+};
+
+export default function MedicalChatInterface({ isEmbedded = false }: MedicalChatInterfaceProps) {
     const router = useRouter();
     const [messages, setMessages] = useState<Message[]>([]);
     const [input, setInput] = useState("");
@@ -167,25 +171,27 @@ export default function MedicalChatInterface() {
     };
 
     return (
-        <div className="flex flex-col h-screen bg-slate-50 font-sans max-w-md mx-auto shadow-2xl overflow-hidden border-x border-slate-200">
-            {/* Medical Header */}
-            <header className="flex items-center justify-between px-4 py-3 bg-white border-b border-slate-200 sticky top-0 z-10 shadow-sm">
-                <div className="flex items-center">
-                    <Link href="/medical/dashboard" className="p-2 -ml-2 text-slate-500 hover:text-slate-800 transition-colors">
-                        <ArrowLeft size={24} />
-                    </Link>
-                    <div className="ml-2">
-                        <h1 className="text-lg font-bold text-slate-800">피부과 AI</h1>
-                        <p className="text-xs text-blue-600 flex items-center font-medium">
-                            <span className="w-2 h-2 rounded-full bg-blue-600 mr-1"></span>
-                            피부과 전문의 감독 하에 운영
-                        </p>
+        <div className={`flex flex-col bg-slate-50 font-sans overflow-hidden ${isEmbedded ? "h-full w-full" : "h-screen max-w-md mx-auto shadow-2xl border-x border-slate-200"}`}>
+            {/* Medical Header - Hidden if embedded */}
+            {!isEmbedded && (
+                <header className="flex items-center justify-between px-4 py-3 bg-white border-b border-slate-200 sticky top-0 z-10 shadow-sm">
+                    <div className="flex items-center">
+                        <Link href="/medical/dashboard" className="p-2 -ml-2 text-slate-500 hover:text-slate-800 transition-colors">
+                            <ArrowLeft size={24} />
+                        </Link>
+                        <div className="ml-2">
+                            <h1 className="text-lg font-bold text-slate-800">피부과 AI</h1>
+                            <p className="text-xs text-blue-600 flex items-center font-medium">
+                                <span className="w-2 h-2 rounded-full bg-blue-600 mr-1"></span>
+                                피부과 전문의 감독 하에 운영
+                            </p>
+                        </div>
                     </div>
-                </div>
-                <button className="p-2 text-slate-500 hover:bg-slate-100 rounded-full transition-colors">
-                    <FileText size={20} />
-                </button>
-            </header>
+                    <button className="p-2 text-slate-500 hover:bg-slate-100 rounded-full transition-colors">
+                        <FileText size={20} />
+                    </button>
+                </header>
+            )}
 
             {/* Chat Area */}
             <div className="flex-1 overflow-y-auto p-4 space-y-6 bg-slate-50">
