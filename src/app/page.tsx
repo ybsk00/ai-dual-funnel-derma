@@ -29,15 +29,16 @@ export default function LandingPage() {
       <header className="relative px-6 pt-32 pb-20 md:pt-48 md:pb-32 text-center overflow-hidden min-h-[90vh] flex flex-col justify-center items-center">
         {/* Background Elements */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-traditional-bg via-transparent to-traditional-bg z-10"></div>
+          {/* Minimal overlay for text readability if needed, but keeping it clear as requested */}
+          <div className="absolute inset-0 bg-black/10 z-10"></div>
           {/* Hero Video Background */}
-          <div className="absolute inset-0 z-0 bg-[#C8B6A6]">
+          <div className="absolute inset-0 z-0 bg-black">
             <video
               autoPlay
               loop
               muted
               playsInline
-              className="w-full h-full object-cover opacity-40 mix-blend-multiply filter sepia-[0.3]"
+              className="w-full h-full object-cover"
             >
               <source src="/2.mp4" type="video/mp4" />
             </video>
