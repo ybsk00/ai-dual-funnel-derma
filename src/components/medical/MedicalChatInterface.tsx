@@ -203,12 +203,16 @@ export default function MedicalChatInterface({ isEmbedded = false }: MedicalChat
                     >
                         {/* Avatar */}
                         <div
-                            className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm ${msg.role === "ai"
-                                ? "bg-blue-600 text-white"
-                                : "bg-slate-200 text-slate-500"
+                            className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm overflow-hidden border border-slate-100 ${msg.role === "ai"
+                                ? "bg-white"
+                                : "bg-slate-200"
                                 }`}
                         >
-                            {msg.role === "ai" ? <Bot size={18} /> : <User size={18} />}
+                            {msg.role === "ai" ? (
+                                <img src="/assets/images/doctor_avatar.jpg" alt="Doctor" className="w-full h-full object-cover" />
+                            ) : (
+                                <img src="/assets/images/user_avatar.jpg" alt="User" className="w-full h-full object-cover" />
+                            )}
                         </div>
 
                         {/* Bubble */}
