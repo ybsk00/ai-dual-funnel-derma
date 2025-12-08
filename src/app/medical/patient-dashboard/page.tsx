@@ -2,7 +2,7 @@
 
 import { useState, Suspense, useEffect } from "react";
 import { Calendar, Clock, MoreHorizontal, Send } from "lucide-react";
-import ChatInterface from "@/components/chat/ChatInterface";
+import MedicalChatInterface from "@/components/medical/MedicalChatInterface";
 import PatientHeader from "@/components/medical/PatientHeader";
 import ReservationModal from "@/components/medical/ReservationModal";
 import { createClient } from "@/lib/supabase/client";
@@ -140,7 +140,7 @@ export default function PatientDashboard() {
 
                     <div className="flex-1 overflow-hidden">
                         <Suspense fallback={<div className="flex items-center justify-center h-full text-traditional-subtext">Loading...</div>}>
-                            <ChatInterface isEmbedded={true} isLoggedIn={true} />
+                            <MedicalChatInterface />
                         </Suspense>
                     </div>
                 </div>
