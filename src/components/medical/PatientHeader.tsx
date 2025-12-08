@@ -35,7 +35,7 @@ export default function PatientHeader() {
                 <div className="w-8 h-8 bg-traditional-primary rounded-lg flex items-center justify-center shadow-sm group-hover:bg-traditional-accent transition-colors duration-300">
                     <span className="text-white text-xs font-bold font-serif">AI</span>
                 </div>
-                <span className="text-lg font-bold text-traditional-text tracking-tight group-hover:text-traditional-primary transition-colors">피부과 AI <span className="text-traditional-accent font-light">AI</span></span>
+                <span className="text-lg font-bold text-traditional-text tracking-tight group-hover:text-traditional-primary transition-colors">피부과 AI</span>
             </Link>
 
             <div className="flex items-center gap-4">

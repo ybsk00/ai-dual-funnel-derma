@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
 2. **구조**:
    - **(1) 피부 상태 분석**: 사진에서 관찰되는 특징(톤, 결, 트러블, 주름 등)을 먼저 짚어주며 공감해라. "사진을 보니 ~한 부분이 신경 쓰이시겠어요." 처럼 말해라.
    - **(2) 시술 추천 및 기대 효과**: 분석된 상태에 적합한 대표적인 시술(레이저, 스킨부스터, 리프팅 등)을 1~2가지 범주로 추천하고, 그 시술이 어떤 원리로 피부를 개선하는지(장점/기대효과)를 알기 쉽게 설명해라.
-   - **(3) 마무리**: 정확한 진단은 내원 상담이 필요함을 부드럽게 언급하며 예약을 유도하거나 추가 질문을 던져라.
+   - **(3) 마무리 질문**: 답변 끝에는 **반드시** 사용자가 대화를 이어갈 수 있도록 질문을 던져라. (예: "더 궁금하신 점이 있으신가요?", "치료 과정에 대해 더 자세히 설명해 드릴까요?")
 3. **금지**:
    - "(1) 분석", "(2) 추천" 같은 목차나 번호를 붙이지 마라. 자연스러운 줄글로 이어라.
    - 과도한 면책 조항(법적 문구)을 기계적으로 붙이지 말고, 대화 흐름 속에 자연스럽게 녹여라.
@@ -59,10 +59,46 @@ AI:
          // history length 4 -> Turn 3
          const currentTurn = Math.floor(history.length / 2) + 1;
 
+         // Check if the PREVIOUS turn was a vision analysis
+         // We look at the last AI message in history. If it contains typical vision analysis keywords or if the user message before that had an image (though we don't have image flag in history text, we can infer or just check AI content).
+         // A simpler way: Check if the last user message in history was "이미지 분석 요청" (which is what we set in frontend) OR check if the last AI message looks like a vision result.
+         // However, the frontend sends "이미지를 전송했습니다." or "이미지 분석 요청".
+         const lastUserMsg = history.length > 0 ? history[history.length - 1] : null;
+         const isPostVisionTurn = lastUserMsg && (lastUserMsg.content.includes("이미지") || lastUserMsg.imageUrl);
+
+         // Actually, history structure is { role, content, imageUrl? }. 
+         // If the LAST message in history (which is from User or AI? History usually excludes the CURRENT message)
+         // Wait, `history` passed from frontend usually EXCLUDES the current `message`.
+         // So `history` contains [User, AI, User, AI...].
+         // The last item in `history` is likely an AI response.
+         // The item before that is User.
+
+         // Let's check if the IMMEDIATELY PRECEDING interaction (last AI response) was a vision analysis.
+         // But we want to trigger reservation on the NEXT turn AFTER vision.
+         // So if the user just sent a text message, and the *previous* AI response was a vision analysis, then THIS turn is "Post-Vision".
+
+         let isPostVision = false;
+         if (history.length >= 2) {
+            const lastAiMsg = history[history.length - 1]; // Last AI response
+            const lastUserMsgBeforeAi = history[history.length - 2]; // User msg before that
+
+            // If the user message associated with the last AI response had an image, then the last AI response was a vision analysis.
+            // But `history` items might not preserve `imageUrl` if not stored/sent back. 
+            // We can check the AI response content for the specific "Vision" style or check if the user message content indicates image upload.
+            if (lastUserMsgBeforeAi.content.includes("이미지") || lastUserMsgBeforeAi.imageUrl) {
+               isPostVision = true;
+            }
+         }
+
          let turnInstruction = "";
          let charLimit = "공백 포함 최대 200자";
+         let shouldTriggerReservation = false;
 
-         if ([3, 5, 7, 10].includes(currentTurn)) {
+         if ([5, 7, 10].includes(currentTurn) || isPostVision) {
+            shouldTriggerReservation = true;
+         }
+
+         if (shouldTriggerReservation) {
             charLimit = "공백 포함 최대 400자";
             turnInstruction = `
          [현재 대화 턴: ${currentTurn}번째]
