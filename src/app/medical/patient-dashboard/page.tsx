@@ -3,6 +3,7 @@
 import { useState, Suspense, useEffect } from "react";
 import { Calendar, Clock, MoreHorizontal, Send } from "lucide-react";
 import MedicalChatInterface from "@/components/medical/MedicalChatInterface";
+import MedicalBanner from "@/components/medical/MedicalBanner";
 import PatientHeader from "@/components/medical/PatientHeader";
 import ReservationModal from "@/components/medical/ReservationModal";
 import { createClient } from "@/lib/supabase/client";
@@ -122,6 +123,9 @@ export default function PatientDashboard() {
                     onClose={() => setIsReservationModalOpen(false)}
                     patientId={patientId}
                 />
+
+                {/* AI Skin Coach Banner */}
+                <MedicalBanner />
 
                 {/* Main Chat Interface Area */}
                 <div className="bg-white/60 backdrop-blur-xl rounded-3xl shadow-xl border border-white/50 overflow-hidden h-[650px] flex flex-col">
