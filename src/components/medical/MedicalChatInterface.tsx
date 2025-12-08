@@ -49,7 +49,7 @@ export default function MedicalChatInterface() {
         const source = params.get("source");
         const context = params.get("context");
 
-        let initialContent = "안녕하세요. AI 스킨 코치 메디컬 상담실입니다. \n더 정확한 진료를 위해 현재 고민이신 피부 증상을 구체적으로 말씀해 주세요. (예: 여드름 부위, 색소 침착, 가려움 등)";
+        let initialContent = "안녕하세요. 피부 진단 및 시술 상담을 도와드리는 AI 메디컬 코치입니다. \n더 정확한 진료를 위해 현재 고민이신 피부 증상을 구체적으로 말씀해 주세요. (예: 여드름 부위, 색소 침착, 가려움 등)";
 
         if (source) {
             switch (source) {
