@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "AI 스마일 덴탈케어 진료 시스템",
+    title: "AI 스마트 피부과 진료 시스템",
     description: "의료진 전용 대시보드",
 };
 
