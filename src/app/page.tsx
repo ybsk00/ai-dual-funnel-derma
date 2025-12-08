@@ -136,8 +136,17 @@ export default function LandingPage() {
       {/* Modules Grid - "My Skin Health" Section */}
       <section className="relative py-32 overflow-hidden">
         {/* Background Image & Overlay */}
+        {/* Background Video & Overlay */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-[url('/images/dental-bg.png')] bg-cover bg-center opacity-90 grayscale-[20%] sepia-[10%]"></div>
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover opacity-90 grayscale-[20%] sepia-[10%]"
+          >
+            <source src="/3.mp4" type="video/mp4" />
+          </video>
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
           <div className="absolute inset-0 bg-traditional-primary/30 mix-blend-multiply"></div>
         </div>
