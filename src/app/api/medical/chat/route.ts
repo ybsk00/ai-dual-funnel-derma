@@ -19,11 +19,12 @@ export async function POST(req: NextRequest) {
             role: "ai",
             content: "🚨 [응급 알림] \n지금 말씀하신 증상은 응급 상황(아나필락시스, 심한 감염/화상 등)일 가능성이 있습니다. \n\n즉시 119에 연락하거나 가까운 응급실/피부과 전문 병원을 방문해 주세요."
          });
-         let responseText = "";
+      }
+      let responseText = "";
 
-         // 2. Vision Mode (Image + Text)
-         if (imageUrl) {
-            const visionSystemPrompt = `
+      // 2. Vision Mode (Image + Text)
+      if (imageUrl) {
+         const visionSystemPrompt = `
 [역할 및 태도]
 너는 친절하고 전문적인 **피부과 전문의**다. 딱딱한 AI 로봇처럼 말하지 말고, 환자와 1:1로 대화하듯이 자연스럽고 따뜻한 **구어체(해요체)**를 사용하라.
 
@@ -47,23 +48,23 @@ ${history.map((msg: any) => `${msg.role === 'user' ? '사용자' : 'AI'}: ${msg.
 사용자: ${message} (이미지 포함됨)
 AI:
 `;
-            const base64Data = imageUrl.split(",")[1];
-            responseText = await generateWithImage(visionSystemPrompt, base64Data);
+         const base64Data = imageUrl.split(",")[1];
+         responseText = await generateWithImage(visionSystemPrompt, base64Data);
 
-         } else {
-            // 3. Text-Only Mode (Aesthetic Procedure AI Concierge)
-            // Calculate turn count based on history (User + AI = 1 turn, but history is array of messages)
-            // history length 0 -> Turn 1
-            // history length 2 -> Turn 2
-            // history length 4 -> Turn 3
-            const currentTurn = Math.floor(history.length / 2) + 1;
+      } else {
+         // 3. Text-Only Mode (Aesthetic Procedure AI Concierge)
+         // Calculate turn count based on history (User + AI = 1 turn, but history is array of messages)
+         // history length 0 -> Turn 1
+         // history length 2 -> Turn 2
+         // history length 4 -> Turn 3
+         const currentTurn = Math.floor(history.length / 2) + 1;
 
-            let turnInstruction = "";
-            let charLimit = "공백 포함 최대 200자";
+         let turnInstruction = "";
+         let charLimit = "공백 포함 최대 200자";
 
-            if ([3, 5, 7, 10].includes(currentTurn)) {
-               charLimit = "공백 포함 최대 400자";
-               turnInstruction = `
+         if ([3, 5, 7, 10].includes(currentTurn)) {
+            charLimit = "공백 포함 최대 400자";
+            turnInstruction = `
          [현재 대화 턴: ${currentTurn}번째]
 ** 중요 지침 **:
          1. 이번 턴에서는 사용자의 고민과 관련된 ** 피부과 미용 시술(스킨부스터, 리프팅, 레이저 등) ** 에 대해 ** 상세하게 ** 설명해야 한다.
@@ -71,9 +72,9 @@ AI:
 3. 특정 상품명보다는 '스킨부스터 계열', 'HIFU 리프팅' 처럼 범주 위주로 언급하고, "피부과 전문의와 상의해보라"는 권유를 포함해라.
 4. ** [RESERVATION_TRIGGER] ** 태그를 답변 맨 마지막에 반드시 포함시켜라. (이 태그는 사용자에게 보이지 않고 예약 모달을 띄우는 용도임)
             `;
-            }
+         }
 
-            const textSystemPrompt = `
+         const textSystemPrompt = `
 너는 한국의 피부과 환경을 이해하고 있는 "피부 미용 시술 상담용 AI 컨시어지"이다.
 
 [필수 제약 사항]
@@ -96,19 +97,19 @@ ${history.map((msg: any) => `${msg.role === 'user' ? '사용자' : 'AI'}: ${msg.
          사용자: ${message}
          AI:
          `;
-            responseText = await generateText(textSystemPrompt, "medical");
-         }
-
-         return NextResponse.json({
-            role: "ai",
-            content: responseText.trim()
-         });
-
-      } catch (error) {
-         console.error("Medical Chat API Error:", error);
-         return NextResponse.json(
-            { error: "Internal Server Error" },
-            { status: 500 }
-         );
+         responseText = await generateText(textSystemPrompt, "medical");
       }
+
+      return NextResponse.json({
+         role: "ai",
+         content: responseText.trim()
+      });
+
+   } catch (error) {
+      console.error("Medical Chat API Error:", error);
+      return NextResponse.json(
+         { error: "Internal Server Error" },
+         { status: 500 }
+      );
    }
+}
