@@ -22,7 +22,7 @@ export default function DoctorSidebar() {
                     <div className="w-8 h-8 bg-teal-600 rounded-full flex items-center justify-center text-white font-bold text-xs">
                         AI
                     </div>
-                    <h1 className="font-bold text-gray-900 text-lg">AI 스마일 덴탈케어</h1>
+                    <h1 className="font-bold text-gray-900 text-lg">AI 피부 헬스케어</h1>
                 </div>
                 <p className="text-xs text-teal-600 font-medium pl-11">Doctor Dashboard</p>
             </div>

@@ -147,7 +147,7 @@ export default function LoginPage() {
                         <div className="w-10 h-10 bg-traditional-primary rounded-xl flex items-center justify-center shadow-md group-hover:bg-traditional-accent transition-colors duration-300">
                             <span className="text-white text-sm font-bold font-serif">AI</span>
                         </div>
-                        <span className="text-xl font-bold text-traditional-text tracking-tight group-hover:text-traditional-primary transition-colors">AI 스마일 덴탈케어</span>
+                        <span className="text-xl font-bold text-traditional-text tracking-tight group-hover:text-traditional-primary transition-colors">AI 피부 헬스케어</span>
                     </Link>
                 </div>
 
