@@ -28,7 +28,7 @@ type ChatInterfaceProps = {
 const FLOWS: any = {
     skin_mbti: {
         title: "피부 컨디션 MBTI",
-        initialMessage: "안녕하세요! 당신의 피부 성격을 찾아주는 AI 스킨 코치입니다.\n\n먼저, 평소 세안과 보습 습관이 궁금해요. 하루에 세안은 몇 번 하시고, 보습제는 바로 바르시나요?",
+        initialMessage: "안녕하세요! 피부 진단 및 시술 상담을 도와드리는 AI 메디컬 코치입니다.\n\n현재 가장 고민이신 피부 증상이나 개선하고 싶은 부분을 구체적으로 말씀해 주세요.",
     },
     skin_age: {
         title: "피부 나이 테스트",
@@ -332,7 +332,7 @@ export default function ChatInterface(props: ChatInterfaceProps) {
                                 {/* Bubble */}
                                 <div className="flex flex-col gap-1 max-w-[80%]">
                                     <span className={`text-xs font-medium ${msg.role === "user" ? "text-right text-traditional-subtext" : "text-left text-traditional-primary"}`}>
-                                        {msg.role === "ai" ? "AI 스킨 코치" : "나"}
+                                        {msg.role === "ai" ? "AI 메디컬 코치" : "나"}
                                     </span>
                                     <div
                                         className={`px-6 py-4 rounded-2xl text-sm leading-relaxed shadow-sm ${msg.role === "ai"
