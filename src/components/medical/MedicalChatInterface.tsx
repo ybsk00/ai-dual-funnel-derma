@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { Send, User, Bot, ArrowLeft, FileText, Plus } from "lucide-react";
+import { Send, User, Bot, ArrowLeft, FileText, Plus, Camera } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import ReservationModal from "./ReservationModal";
@@ -256,9 +256,9 @@ export default function MedicalChatInterface({ isEmbedded = false }: MedicalChat
                         type="button"
                         onClick={() => fileInputRef.current?.click()}
                         className="p-3 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-full transition-colors"
-                        title="이미지 업로드"
+                        title="피부 사진 업로드"
                     >
-                        <Plus size={20} />
+                        <Camera size={20} />
                     </button>
                     <input
                         type="text"
