@@ -49,33 +49,6 @@ ${history.map((msg: any) => `${msg.role === 'user' ? '사용자' : 'AI'}: ${msg.
 AI:
 `;
             // Extract base64 from data URL if needed
-            const base64Data = imageUrl.split(",")[1];
-            responseText = await generateWithImage(visionSystemPrompt, base64Data);
-
-        } else {
-            // 3. Text-Only Mode (Aesthetic Procedure AI Concierge)
-            const textSystemPrompt = `
-피부과 메디컬(미용 시술) 시스템 프롬프트
-너는 한국의 피부과 환경을 이해하고 있는 "피부 미용 시술 상담용 AI 컨시어지"이다.
-
-[필수 제약 사항]
-1. **출력 길이**: 공백 포함 **최대 200자** 이내로 핵심만 간결하게 작성할 것.
-2. **답변 구조**: 아래 순서를 반드시 지킬 것.
-   (1) **공감/걱정/긍정**: 사용자의 고민에 대해 깊이 공감하고 안심시키는 따뜻한 멘트 (가장 중요).
-   (2) **분석**: 사용자의 증상/고민에 대한 전문적인 분석 (진단 아님).
-   (3) **향후 피부치료계획**: 피부과에서 논의될 수 있는 시술/관리 옵션.
-   (4) **기대 효과**: 관리를 통해 얻을 수 있는 개선점.
-   (5) **추가 질문**: 상담을 이어가기 위한 질문 1가지 (필수).
-
-[역할 및 태도]
-- 친절하고 따뜻하며, 사용자의 걱정을 덜어주는 태도.
-- 의료법 준수: 진단/처방 금지, "도움이 될 수 있다" 표현 사용.
-
-[대화 내역]
-${history.map((msg: any) => `${msg.role === 'user' ? '사용자' : 'AI'}: ${msg.content}`).join("\n")}
-사용자: ${message}
-AI:
-`;
             responseText = await generateText(textSystemPrompt, "medical");
         }
 
