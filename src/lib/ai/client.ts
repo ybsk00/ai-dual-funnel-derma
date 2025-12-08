@@ -40,3 +40,21 @@ export async function generateText(prompt: string, mode: AIModelMode = "healthca
         throw error;
     }
 }
+
+export async function generateWithImage(prompt: string, imageBase64: string, mimeType: string = "image/jpeg") {
+    try {
+        const model = getModel("vision");
+        const imagePart = {
+            inlineData: {
+                data: imageBase64,
+                mimeType: mimeType
+            }
+        };
+        const result = await model.generateContent([prompt, imagePart]);
+        const response = await result.response;
+        return response.text();
+    } catch (error) {
+        console.error("AI Vision Generation Error:", error);
+        throw error;
+    }
+}
