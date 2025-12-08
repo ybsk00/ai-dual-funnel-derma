@@ -25,24 +25,24 @@ export default function MedicalChatInterface() {
         const source = params.get("source");
         const context = params.get("context");
 
-        let initialContent = "안녕하세요. AI 스마일 덴탈케어 상담실입니다. \n더 정확한 진료를 위해 현재 불편하신 치아/구강 증상을 구체적으로 말씀해 주세요. (예: 통증 부위, 시작된 시기, 악화 요인 등)";
+        let initialContent = "안녕하세요. AI 스킨 코치 메디컬 상담실입니다. \n더 정확한 진료를 위해 현재 고민이신 피부 증상을 구체적으로 말씀해 주세요. (예: 여드름 부위, 색소 침착, 가려움 등)";
 
         if (source) {
             switch (source) {
-                case "smile_test":
-                    initialContent = `스마일 인상 체크 결과(${context})를 보고 오셨군요. \n치아 교정이나 미백, 잇몸 성형 등 더 아름다운 미소를 위한 전문 상담을 도와드릴까요?`;
+                case "skin_mbti":
+                    initialContent = `피부 MBTI 결과(${context})를 보고 오셨군요. \n내 피부 성격에 맞는 더 전문적인 관리법이나 시술 상담이 필요하신가요?`;
                     break;
-                case "breath_mbti":
-                    initialContent = `입냄새 MBTI 결과(${context})에 대해 더 궁금하신가요? \n구취의 근본적인 원인(위장, 구강 건조 등)을 찾고 치료하는 방법에 대해 안내해 드릴 수 있습니다.`;
+                case "skin_age":
+                    initialContent = `피부 나이 테스트 결과(${context})가 신경 쓰이시나요? \n피부 노화를 늦추고 탄력을 되찾는 전문적인 리프팅/안티에이징 상담을 도와드릴까요?`;
                     break;
-                case "teeth_age":
-                    initialContent = `치아 나이 테스트 결과(${context})를 확인하셨군요. \n현재 치아 상태를 정확히 진단하고, 노화를 늦추는 맞춤형 관리법이나 치료가 필요한지 상담해 드릴까요?`;
+                case "uv_score":
+                    initialContent = `자외선 생활 점수(${context})를 확인하셨군요. \n이미 생긴 기미/잡티나 칙칙한 톤을 개선하기 위한 미백/색소 치료 상담이 필요하신가요?`;
                     break;
-                case "stain_risk":
-                    initialContent = `커피 착색 위험도(${context})가 걱정되시나요? \n치아 미백이나 착색 예방을 위한 스케일링, 생활 습관 교정에 대해 전문적인 조언을 드릴 수 있습니다.`;
+                case "cleansing_lab":
+                    initialContent = `세안 루틴 점검 결과(${context})는 어떠셨나요? \n잘못된 세안으로 무너진 피부 장벽을 회복하거나, 내 피부에 딱 맞는 스킨케어 처방을 도와드릴 수 있습니다.`;
                     break;
-                case "kids_mission":
-                    initialContent = `우리 아이 양치 히어로 미션(${context})을 완료했군요! \n아이의 충치 예방, 불소 도포, 올바른 양치 습관 교육에 대해 부모님과 상담을 진행해 드릴까요?`;
+                case "trouble_map":
+                    initialContent = `트러블 지도 분석 결과(${context})를 가지고 오셨네요. \n반복되는 트러블의 근본 원인을 찾고, 흉터 없이 깨끗하게 치료하는 방법에 대해 상담해 드릴까요?`;
                     break;
             }
         }
@@ -142,10 +142,10 @@ export default function MedicalChatInterface() {
                         <ArrowLeft size={24} />
                     </Link>
                     <div className="ml-2">
-                        <h1 className="text-lg font-bold text-slate-800">치과 AI 상담 (Dental Chat)</h1>
+                        <h1 className="text-lg font-bold text-slate-800">피부과 AI 상담 (Dermatology Chat)</h1>
                         <p className="text-xs text-blue-600 flex items-center font-medium">
                             <span className="w-2 h-2 rounded-full bg-blue-600 mr-1"></span>
-                            치과 전문의 감독 하에 운영
+                            피부과 전문의 감독 하에 운영
                         </p>
                     </div>
                 </div>

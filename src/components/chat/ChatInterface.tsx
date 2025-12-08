@@ -7,11 +7,11 @@ import { useSearchParams, useRouter } from "next/navigation";
 import ConditionReport from "@/components/healthcare/ConditionReport";
 import ReservationModal from "@/components/medical/ReservationModal";
 import { createClient } from "@/lib/supabase/client";
-import SmileResultCard from "@/components/healthcare/results/SmileResultCard";
-import MbtiResultCard from "@/components/healthcare/results/MbtiResultCard";
-import TeethAgeCard from "@/components/healthcare/results/TeethAgeCard";
-import StainCard from "@/components/healthcare/results/StainCard";
-import KidsHeroCard from "@/components/healthcare/results/KidsHeroCard";
+import SkinMbtiCard from "@/components/healthcare/results/SkinMbtiCard";
+import SkinAgeCard from "@/components/healthcare/results/SkinAgeCard";
+import UvScoreCard from "@/components/healthcare/results/UvScoreCard";
+import CleansingCard from "@/components/healthcare/results/CleansingCard";
+import TroubleMapCard from "@/components/healthcare/results/TroubleMapCard";
 
 type Message = {
     role: "user" | "ai";
@@ -24,58 +24,35 @@ type ChatInterfaceProps = {
     isLoggedIn?: boolean;
 };
 
-// Flow Definitions
+// Dermatology Flow Definitions
 const FLOWS: any = {
-    smile_test: {
-        title: "AI 스마일 인상체크",
-        initialMessage: "당신의 미소 사진을 올려주시면, AI가 인상을 분석해 드려요! (재미용)",
-        steps: [
-            { id: "image_upload", question: "사진을 업로드해주세요." }
-        ]
+    skin_mbti: {
+        title: "피부 컨디션 MBTI",
+        initialMessage: "안녕하세요! 당신의 피부 성격을 찾아주는 AI 스킨 코치입니다.\n\n먼저, 평소 세안과 보습 습관이 궁금해요. 하루에 세안은 몇 번 하시고, 보습제는 바로 바르시나요?",
     },
-    breath_mbti: {
-        title: "입냄새 MBTI",
-        initialMessage: "몇 가지 질문으로 나의 입냄새 유형을 알아볼까요?",
-        steps: [
-            { id: "q1", question: "평소 양치질은 하루에 몇 번 하시나요?" },
-            { id: "q2", question: "치실이나 치간칫솔은 사용하시나요?" },
-            { id: "q3", question: "혀 클리너도 사용하시나요?" },
-            { id: "q4", question: "입이 자주 마르다고 느끼시나요?" },
-            { id: "q5", question: "커피나 탄산음료를 자주 드시나요?" }
-        ]
+    skin_age: {
+        title: "피부 나이 테스트",
+        initialMessage: "내 피부 나이는 몇 살일까요? AI 스킨 코치가 계산해 드릴게요.\n\n평소 야외 활동은 얼마나 하시고, 선크림은 꼼꼼히 바르시는 편인가요?",
     },
-    teeth_age: {
-        title: "치아 나이 테스트",
-        initialMessage: "실제 나이와 치아 나이는 다를 수 있어요. 테스트를 시작할까요?",
-        steps: [
-            { id: "age_input", question: "현재 나이가 어떻게 되시나요?" },
-            { id: "q1", question: "이가 시린 증상이 있나요?" },
-            { id: "q2", question: "잇몸에서 피가 난 적이 있나요?" },
-            { id: "q3", question: "단단한 음식을 씹을 때 불편한가요?" }
-        ]
+    uv_score: {
+        title: "자외선 생활 점수",
+        initialMessage: "자외선 관리, 얼마나 잘하고 계신가요? 점수로 알려드릴게요.\n\n평일과 주말, 야외에 머무는 시간은 대략 어느 정도인가요?",
     },
-    stain_risk: {
-        title: "커피 착색 카드",
-        initialMessage: "평소 커피 습관을 알려주시면 착색 위험도를 알려드려요.",
-        steps: [
-            { id: "q1", question: "하루에 커피를 몇 잔 드시나요?" },
-            { id: "q2", question: "커피를 마신 후 바로 양치를 하시나요?" }
-        ]
+    cleansing_lab: {
+        title: "세안 루틴 연구소",
+        initialMessage: "매일 하는 세안, 내 피부에 딱 맞을까요? 클렌징 연구소입니다.\n\n아침, 저녁 세안은 각각 어떻게(물세안/폼/오일 등) 하고 계신가요?",
     },
-    kids_mission: {
-        title: "양치 히어로",
-        initialMessage: "안녕! 나는 치아를 지키는 닥터 래빗이야. 오늘 양치 미션을 완료했니?",
-        steps: [
-            { id: "mission_check", question: "오늘 아침, 점심, 저녁 양치를 모두 했나요?" }
-        ]
+    trouble_map: {
+        title: "피부 트러블 지도",
+        initialMessage: "트러블이 자주 나는 위치와 패턴을 분석해 드릴게요.\n\n주로 얼굴의 어느 부위(이마/볼/턱 등)에 트러블이 자주 생기나요?",
     }
 };
 
 export default function ChatInterface(props: ChatInterfaceProps) {
     const searchParams = useSearchParams();
     const router = useRouter();
-    const topic = searchParams.get("topic") || "resilience";
-    const isDentalFlow = Object.keys(FLOWS).includes(topic);
+    const topic = searchParams.get("topic") || "skin_mbti";
+    const isDermatologyFlow = Object.keys(FLOWS).includes(topic);
 
     const [messages, setMessages] = useState<Message[]>([]);
     const [input, setInput] = useState("");
@@ -120,15 +97,16 @@ export default function ChatInterface(props: ChatInterfaceProps) {
 
     // Welcome message based on topic
     useEffect(() => {
-        let welcomeMsg = "안녕하세요, AI 스마일 덴탈케어입니다. 궁금한 점을 체크해 보세요.";
+        let welcomeMsg = "안녕하세요, AI 스킨 코치입니다. 궁금한 점을 체크해 보세요.";
 
-        if (isDentalFlow) {
+        if (isDermatologyFlow) {
             welcomeMsg = FLOWS[topic].initialMessage;
         }
 
         setMessages([{ role: "ai", content: welcomeMsg }]);
         setFlowState({ stepIndex: 0, answers: {}, image: null });
-    }, [topic, isDentalFlow]);
+        setTurnCount(0);
+    }, [topic, isDermatologyFlow]);
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -139,14 +117,16 @@ export default function ChatInterface(props: ChatInterfaceProps) {
     }, [messages]);
 
     const handleImageClick = () => {
-        if (["smile_test", "stain_risk"].includes(topic) || props.isLoggedIn) {
+        // For dermatology, maybe enable for Trouble Map later?
+        // For now, keep it simple or require login.
+        if (props.isLoggedIn) {
             fileInputRef.current?.click();
             return;
         }
 
         setLoginModalContent({
             title: "이미지 분석 기능",
-            desc: "이미지 분석을 통한 건강 상담은<br />로그인 후 이용 가능합니다."
+            desc: "이미지 분석을 통한 피부 상담은<br />로그인 후 이용 가능합니다."
         });
         setShowLoginModal(true);
     };
@@ -163,17 +143,8 @@ export default function ChatInterface(props: ChatInterfaceProps) {
         const reader = new FileReader();
         reader.onloadend = () => {
             const base64String = reader.result as string;
-
-            if (isDentalFlow) {
-                setFlowState(prev => ({ ...prev, image: base64String }));
-                setMessages(prev => [...prev, { role: "user", content: "📷 [사진이 업로드되었습니다]" }]);
-
-                if (topic === "smile_test") {
-                    handleDentalFlow("📷 [사진 분석 요청]");
-                }
-            } else {
-                setMessages(prev => [...prev, { role: "user", content: "📷 [사진 전송됨]" }]);
-            }
+            setMessages(prev => [...prev, { role: "user", content: "📷 [사진 전송됨]" }]);
+            // Logic to handle image can be added here if needed
         };
         reader.readAsDataURL(file);
     };
@@ -192,19 +163,6 @@ export default function ChatInterface(props: ChatInterfaceProps) {
         setTurnCount(newTurnCount);
         setMessages(prev => [...prev, { role: "user", content: userMessage }]);
 
-        if (isDentalFlow) {
-            await handleDentalFlow(userMessage);
-            return;
-        }
-
-        if (!props.isLoggedIn && [3, 7].includes(newTurnCount)) {
-            setLoginModalContent({
-                title: "상세한 상담이 필요하신가요?",
-                desc: "더 정확한 건강 분석과 맞춤형 조언을 위해<br />로그인이 필요합니다."
-            });
-            setShowLoginModal(true);
-        }
-
         setIsLoading(true);
 
         try {
@@ -214,7 +172,7 @@ export default function ChatInterface(props: ChatInterfaceProps) {
                 body: JSON.stringify({
                     message: userMessage,
                     history: messages,
-                    topic
+                    service_mode: topic // Pass the service mode (skin_mbti, etc.)
                 }),
             });
 
@@ -222,18 +180,19 @@ export default function ChatInterface(props: ChatInterfaceProps) {
 
             const data = await response.json();
             let aiContent = data.content;
+            const result = data.result;
 
             if (aiContent.includes("[RESERVATION_TRIGGER]")) {
                 aiContent = aiContent.replace("[RESERVATION_TRIGGER]", "").trim();
                 setShowReservationModal(true);
             }
 
-            setMessages(prev => [...prev, { role: "ai", content: aiContent }]);
+            setMessages(prev => [...prev, { role: "ai", content: aiContent, result: result }]);
 
             if (!props.isLoggedIn && data.content.includes("로그인이 필요합니다")) {
                 setLoginModalContent({
                     title: "상세한 상담이 필요하신가요?",
-                    desc: "더 정확한 건강 분석과 맞춤형 조언을 위해<br />로그인이 필요합니다."
+                    desc: "더 정확한 피부 분석과 맞춤형 조언을 위해<br />로그인이 필요합니다."
                 });
                 setShowLoginModal(true);
             }
@@ -245,140 +204,36 @@ export default function ChatInterface(props: ChatInterfaceProps) {
         }
     };
 
-    const handleDentalFlow = async (userMessage: string) => {
-        setIsLoading(true);
-
-        const currentFlow = FLOWS[topic];
-        // Determine current step based on flowState.stepIndex
-        // Note: stepIndex 0 is usually the start, but we might want to track which question we are ON.
-        // Let's assume stepIndex corresponds to the index in the steps array.
-
-        const currentStepIdx = flowState.stepIndex;
-        const currentStep = currentFlow.steps[currentStepIdx];
-
-        // Store answer for the *current* step (which the user just answered)
-        // If stepIndex is 0, it means we are answering the first question (or initial prompt).
-        // Actually, the initial message is displayed, then user answers.
-        // So userMessage is the answer to the *previous* question (or initial).
-
-        // Logic:
-        // 1. User answers.
-        // 2. We store that answer.
-        // 3. We check if there are more steps.
-        // 4. If yes, we ask the NEXT question via API (for empathy).
-        // 5. If no, we submit all answers for final analysis.
-
-        const updatedAnswers = { ...flowState.answers, [`step_${currentStepIdx}`]: userMessage };
-
-        // Calculate next step index
-        const nextStepIdx = currentStepIdx + 1;
-        const totalSteps = currentFlow.steps.length;
-        const isComplete = (topic === 'smile_test' && (flowState.image || userMessage.includes("사진"))) ||
-            (nextStepIdx >= totalSteps);
-
-        setFlowState(prev => ({
-            ...prev,
-            stepIndex: nextStepIdx,
-            answers: updatedAnswers
-        }));
-
-        if (isComplete) {
-            // Final Analysis
-            try {
-                const response = await fetch("/api/chat", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        flow_type: topic,
-                        answers: updatedAnswers,
-                        image: flowState.image,
-                        is_final: true // Flag for final analysis
-                    }),
-                });
-
-                if (!response.ok) throw new Error("Failed to analyze");
-
-                const data = await response.json();
-                setMessages(prev => [...prev, {
-                    role: "ai",
-                    content: data.content,
-                    result: data.result
-                }]);
-
-            } catch (error) {
-                console.error("Error:", error);
-                setMessages(prev => [...prev, { role: "ai", content: "분석 중 오류가 발생했습니다." }]);
-            }
-        } else {
-            // Intermediate Step: Ask AI to generate empathy + next question
-            const nextStep = currentFlow.steps[nextStepIdx];
-            const nextQuestion = nextStep.question;
-
-            try {
-                const response = await fetch("/api/chat", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        flow_type: topic,
-                        answers: updatedAnswers, // Pass all answers so far
-                        current_answer: userMessage, // The latest answer to react to
-                        next_question: nextQuestion, // The question AI should ask next
-                        is_final: false
-                    }),
-                });
-
-                if (!response.ok) throw new Error("Failed to get next question");
-
-                const data = await response.json();
-                setMessages(prev => [...prev, { role: "ai", content: data.content }]);
-
-            } catch (error) {
-                console.error("Error:", error);
-                // Fallback if API fails
-                setMessages(prev => [...prev, { role: "ai", content: nextQuestion }]);
-            }
-        }
-
-        setIsLoading(false);
-    };
-
-    // Report Logic
-    const [showReport, setShowReport] = useState(false);
-    const [reportData, setReportData] = useState<any>(null);
-
-    if (showReport && reportData) {
-        return <ConditionReport result={reportData} onRetry={() => setShowReport(false)} />;
-    }
-
+    // Modules List
     const modules = [
         {
-            id: "smile_test",
-            label: "스마일 인상체크",
-            desc: "AI 미소 분석",
+            id: "skin_mbti",
+            label: "피부 MBTI",
+            desc: "내 피부 성격은?",
             theme: "from-amber-500/20 to-orange-600/20"
         },
         {
-            id: "breath_mbti",
-            label: "입냄새 MBTI",
-            desc: "구취 유형 분석",
+            id: "skin_age",
+            label: "피부 나이",
+            desc: "10년 후 내 피부는?",
             theme: "from-rose-400/20 to-pink-600/20"
         },
         {
-            id: "teeth_age",
-            label: "치아 나이",
-            desc: "생활습관 분석",
+            id: "uv_score",
+            label: "자외선 점수",
+            desc: "선크림 잘 바르고 있나?",
             theme: "from-blue-400/20 to-slate-600/20"
         },
         {
-            id: "stain_risk",
-            label: "착색 위험도",
-            desc: "커피 습관 체크",
+            id: "cleansing_lab",
+            label: "세안 연구소",
+            desc: "내 세안법 점검",
             theme: "from-emerald-400/20 to-teal-600/20"
         },
         {
-            id: "kids_mission",
-            label: "양치 히어로",
-            desc: "어린이 양치 습관",
+            id: "trouble_map",
+            label: "트러블 지도",
+            desc: "왜 자꾸 거기에 날까?",
             theme: "from-violet-400/20 to-purple-600/20"
         },
     ];
@@ -392,7 +247,7 @@ export default function ChatInterface(props: ChatInterfaceProps) {
                         <div className="w-8 h-8 bg-traditional-primary rounded-lg flex items-center justify-center shadow-sm group-hover:bg-traditional-accent transition-colors duration-300">
                             <span className="text-white text-xs font-bold font-serif">AI</span>
                         </div>
-                        <span className="text-lg font-bold text-traditional-text tracking-tight group-hover:text-traditional-primary transition-colors">AI 스마일 덴탈케어</span>
+                        <span className="text-lg font-bold text-traditional-text tracking-tight group-hover:text-traditional-primary transition-colors">AI 스킨 코치</span>
                     </Link>
                     <div className="hidden md:flex items-center gap-6 text-sm font-medium text-traditional-subtext">
                         <Link href="/login" className="px-6 py-2 bg-traditional-primary text-white text-sm font-medium rounded-full hover:bg-traditional-accent hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
@@ -401,8 +256,6 @@ export default function ChatInterface(props: ChatInterfaceProps) {
                     </div>
                 </header>
             )}
-
-
 
             <main className={`flex-1 w-full mx-auto ${props.isEmbedded ? "flex flex-col overflow-hidden p-0" : "max-w-5xl px-4 pb-20 pt-6"}`}>
                 {/* Hero Banner - Hidden if embedded */}
@@ -421,13 +274,13 @@ export default function ChatInterface(props: ChatInterfaceProps) {
 
                         <div className="relative z-10 h-full flex flex-col justify-center p-8 md:p-12">
                             <div className="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white text-xs font-medium mb-4 w-fit">
-                                AI Dental Analysis
+                                AI Skin Analysis
                             </div>
                             <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 drop-shadow-lg font-serif leading-tight">
-                                AI 스마일 덴탈케어로<br />시작하는 치아 건강
+                                AI 스킨 코치와 함께<br />찾아가는 내 피부 정답
                             </h2>
                             <p className="text-white/90 text-sm md:text-base font-light mb-4 max-w-lg leading-relaxed">
-                                최첨단 AI 기술로 당신의 미소를 분석하고<br />맞춤형 치아 관리 솔루션을 제공합니다.
+                                생활 습관부터 피부 고민까지, AI가 분석하고<br />맞춤형 관리 루틴을 제안해 드립니다.
                             </p>
 
                             {/* Module List (Overlay on Hero) */}
@@ -479,7 +332,7 @@ export default function ChatInterface(props: ChatInterfaceProps) {
                                 {/* Bubble */}
                                 <div className="flex flex-col gap-1 max-w-[80%]">
                                     <span className={`text-xs font-medium ${msg.role === "user" ? "text-right text-traditional-subtext" : "text-left text-traditional-primary"}`}>
-                                        {msg.role === "ai" ? "AI 닥터" : "나"}
+                                        {msg.role === "ai" ? "AI 스킨 코치" : "나"}
                                     </span>
                                     <div
                                         className={`px-6 py-4 rounded-2xl text-sm leading-relaxed shadow-sm ${msg.role === "ai"
@@ -495,11 +348,11 @@ export default function ChatInterface(props: ChatInterfaceProps) {
                             {/* Result Cards */}
                             {msg.result && (
                                 <div className="mt-4 animate-in fade-in slide-in-from-bottom-4 duration-700">
-                                    {topic === 'smile_test' && <SmileResultCard result={msg.result} isLoggedIn={props.isLoggedIn || false} />}
-                                    {topic === 'breath_mbti' && <MbtiResultCard result={msg.result} isLoggedIn={props.isLoggedIn || false} />}
-                                    {topic === 'teeth_age' && <TeethAgeCard result={msg.result} isLoggedIn={props.isLoggedIn || false} />}
-                                    {topic === 'stain_risk' && <StainCard result={msg.result} isLoggedIn={props.isLoggedIn || false} />}
-                                    {topic === 'kids_mission' && <KidsHeroCard result={msg.result} isLoggedIn={props.isLoggedIn || false} />}
+                                    {topic === 'skin_mbti' && <SkinMbtiCard result={msg.result} isLoggedIn={props.isLoggedIn || false} />}
+                                    {topic === 'skin_age' && <SkinAgeCard result={msg.result} isLoggedIn={props.isLoggedIn || false} />}
+                                    {topic === 'uv_score' && <UvScoreCard result={msg.result} isLoggedIn={props.isLoggedIn || false} />}
+                                    {topic === 'cleansing_lab' && <CleansingCard result={msg.result} isLoggedIn={props.isLoggedIn || false} />}
+                                    {topic === 'trouble_map' && <TroubleMapCard result={msg.result} isLoggedIn={props.isLoggedIn || false} />}
                                 </div>
                             )}
                         </div>
@@ -534,7 +387,7 @@ export default function ChatInterface(props: ChatInterfaceProps) {
                             type="text"
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
-                            placeholder="증상이나 궁금한 점을 입력해주세요..."
+                            placeholder="답변을 입력해주세요..."
                             className="flex-1 bg-transparent border-none focus:ring-0 text-traditional-text placeholder:text-traditional-subtext/50 text-base"
                         />
                         <input
