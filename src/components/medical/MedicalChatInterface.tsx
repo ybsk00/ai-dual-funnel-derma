@@ -1,6 +1,3 @@
-```javascript
-"use client";
-```javascript
 "use client";
 
 import { useState, useRef, useEffect } from "react";
@@ -57,19 +54,19 @@ export default function MedicalChatInterface() {
         if (source) {
             switch (source) {
                 case "skin_mbti":
-                    initialContent = `피부 MBTI 결과(${context})를 보고 오셨군요.\n내 피부 성격에 맞는 더 전문적인 관리법이나 시술 상담이 필요하신가요 ? `;
+                    initialContent = `피부 MBTI 결과(${context})를 보고 오셨군요. \n내 피부 성격에 맞는 더 전문적인 관리법이나 시술 상담이 필요하신가요?`;
                     break;
                 case "skin_age":
-                    initialContent = `피부 나이 테스트 결과(${context})가 신경 쓰이시나요 ?\n피부 노화를 늦추고 탄력을 되찾는 전문적인 리프팅 / 안티에이징 상담을 도와드릴까요 ? `;
+                    initialContent = `피부 나이 테스트 결과(${context})가 신경 쓰이시나요? \n피부 노화를 늦추고 탄력을 되찾는 전문적인 리프팅/안티에이징 상담을 도와드릴까요?`;
                     break;
                 case "uv_score":
-                    initialContent = `자외선 생활 점수(${context})를 확인하셨군요.\n이미 생긴 기미 / 잡티나 칙칙한 톤을 개선하기 위한 미백 / 색소 치료 상담이 필요하신가요 ? `;
+                    initialContent = `자외선 생활 점수(${context})를 확인하셨군요. \n이미 생긴 기미/잡티나 칙칙한 톤을 개선하기 위한 미백/색소 치료 상담이 필요하신가요?`;
                     break;
                 case "cleansing_lab":
-                    initialContent = `세안 루틴 점검 결과(${context})는 어떠셨나요 ?\n잘못된 세안으로 무너진 피부 장벽을 회복하거나, 내 피부에 딱 맞는 스킨케어 처방을 도와드릴 수 있습니다.`;
+                    initialContent = `세안 루틴 점검 결과(${context})는 어떠셨나요? \n잘못된 세안으로 무너진 피부 장벽을 회복하거나, 내 피부에 딱 맞는 스킨케어 처방을 도와드릴 수 있습니다.`;
                     break;
                 case "trouble_map":
-                    initialContent = `트러블 지도 분석 결과(${context})를 가지고 오셨네요.\n반복되는 트러블의 근본 원인을 찾고, 흉터 없이 깨끗하게 치료하는 방법에 대해 상담해 드릴까요 ? `;
+                    initialContent = `트러블 지도 분석 결과(${context})를 가지고 오셨네요. \n반복되는 트러블의 근본 원인을 찾고, 흉터 없이 깨끗하게 치료하는 방법에 대해 상담해 드릴까요?`;
                     break;
             }
         }
@@ -201,9 +198,9 @@ export default function MedicalChatInterface() {
                         {/* Avatar */}
                         <div
                             className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm ${msg.role === "ai"
-                                    ? "bg-blue-600 text-white"
-                                    : "bg-slate-200 text-slate-500"
-                                } `}
+                                ? "bg-blue-600 text-white"
+                                : "bg-slate-200 text-slate-500"
+                                }`}
                         >
                             {msg.role === "ai" ? <Bot size={18} /> : <User size={18} />}
                         </div>
@@ -211,9 +208,9 @@ export default function MedicalChatInterface() {
                         {/* Bubble */}
                         <div
                             className={`max-w-[85%] px-4 py-3 rounded-2xl text-sm leading-relaxed shadow-sm ${msg.role === "ai"
-                                    ? "bg-white text-slate-800 border border-slate-200 rounded-tl-none"
-                                    : "bg-blue-600 text-white rounded-tr-none"
-                                } `}
+                                ? "bg-white text-slate-800 border border-slate-200 rounded-tl-none"
+                                : "bg-blue-600 text-white rounded-tr-none"
+                                }`}
                         >
                             {msg.imageUrl && (
                                 <img src={msg.imageUrl} alt="Uploaded" className="max-w-full rounded-lg mb-2 border border-white/20" />
@@ -285,4 +282,3 @@ export default function MedicalChatInterface() {
         </div>
     );
 }
-```
