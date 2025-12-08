@@ -142,7 +142,7 @@ export default function MedicalChatInterface() {
                         <ArrowLeft size={24} />
                     </Link>
                     <div className="ml-2">
-                        <h1 className="text-lg font-bold text-slate-800">피부과 AI 상담 (Dermatology Chat)</h1>
+                        <h1 className="text-lg font-bold text-slate-800">AI 피부 헬스케어 (Dermatology Chat)</h1>
                         <p className="text-xs text-blue-600 flex items-center font-medium">
                             <span className="w-2 h-2 rounded-full bg-blue-600 mr-1"></span>
                             피부과 전문의 감독 하에 운영

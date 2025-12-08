@@ -247,7 +247,7 @@ export default function ChatInterface(props: ChatInterfaceProps) {
                         <div className="w-8 h-8 bg-traditional-primary rounded-lg flex items-center justify-center shadow-sm group-hover:bg-traditional-accent transition-colors duration-300">
                             <span className="text-white text-xs font-bold font-serif">AI</span>
                         </div>
-                        <span className="text-lg font-bold text-traditional-text tracking-tight group-hover:text-traditional-primary transition-colors">AI 스킨 코치</span>
+                        <span className="text-lg font-bold text-traditional-text tracking-tight group-hover:text-traditional-primary transition-colors">AI 피부 헬스케어</span>
                     </Link>
                     <div className="hidden md:flex items-center gap-6 text-sm font-medium text-traditional-subtext">
                         <Link href="/login" className="px-6 py-2 bg-traditional-primary text-white text-sm font-medium rounded-full hover:bg-traditional-accent hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
@@ -262,7 +262,7 @@ export default function ChatInterface(props: ChatInterfaceProps) {
                 {!props.isEmbedded && (
                     <div className="relative rounded-3xl overflow-hidden mb-8 h-[300px] md:h-[380px] shadow-2xl group">
                         <video
-                            src="/1.mp4"
+                            src="/2.mp4"
                             autoPlay
                             loop
                             muted
