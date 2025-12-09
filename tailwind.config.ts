@@ -11,26 +11,26 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        // Healthcare Theme (Pastel Pink Style)
+        // Healthcare Theme (Pastel Pink Style - Darker for Readability)
         traditional: {
-          bg: "#FFF5F7", // Very Light Pinkish White
-          text: "#4A4A4A", // Soft Dark Grey
-          subtext: "#7D7D7D", // Medium Grey
-          primary: "#FFB7B2", // Pastel Pink
-          secondary: "#FFDAC1", // Pastel Peach/Rose
-          accent: "#FF9AA2", // Soft Red/Pink
-          muted: "#FDE2E4", // Muted Pink
-          ai: "#FFB7B2", // AI Pink (Consistent with primary)
+          bg: "#FFF5F7", // Very Light Pinkish White (Unchanged)
+          text: "#4A4A4A", // Soft Dark Grey (Unchanged)
+          subtext: "#7D7D7D", // Medium Grey (Unchanged)
+          primary: "#FF6B81", // Deeper Pink
+          secondary: "#FF9A8B", // Deeper Peach
+          accent: "#FF4757", // Deep Red/Pink
+          muted: "#F8C3CD", // Slightly darker muted pink
+          ai: "#FF6B81", // Match primary
         },
         // Medical Theme (Unified Pastel Style)
         medical: {
           bg: "#FFF5F7",
           text: "#4A4A4A",
           subtext: "#7D7D7D",
-          primary: "#FFB7B2",
-          secondary: "#FFDAC1",
-          accent: "#FF9AA2",
-          muted: "#FDE2E4",
+          primary: "#FF6B81",
+          secondary: "#FF9A8B",
+          accent: "#FF4757",
+          muted: "#F8C3CD",
         },
       },
 
